@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 90" role="img" aria-labelledby="title desc">
+<title id="title">NirmanTools BD</title><desc id="desc">NirmanTools BD construction tools logo</desc>
+<rect width="420" height="90" rx="18" fill="#174ea6"/>
+<g fill="#fff"><path d="M28 58h38V42H28v16Zm0-23h38V19H28v16Zm46 23h15V19H74v39Zm24 0h15V42h20v16h15V19h-15v12h-20V19H98v39Z" opacity=".98"/></g>
+<text x="172" y="39" font-family="Arial,sans-serif" font-size="25" font-weight="800" fill="#fff">NirmanTools</text>
+<text x="172" y="64" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#dbeafe">BD</text>
+<path d="M218 64h92" stroke="#dbeafe" stroke-width="3" stroke-linecap="round"/>
+</svg>

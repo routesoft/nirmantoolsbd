@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rod Weight Calculator Bangladesh – রডের ওজন</title><meta name="description" content="Calculate Bangladesh rod weight, total rebar weight and estimated cost.">
+<link rel="canonical" href="">
+<meta property="og:title" content="Rod Weight Calculator Bangladesh – রডের ওজন"><meta property="og:description" content="Calculate Bangladesh rod weight, total rebar weight and estimated cost.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<script defer src="js/main.js"></script><script>
+function calcRod(){
+ let d=+document.getElementById('d').value, l=+document.getElementById('l').value, q=+document.getElementById('q').value, unit=document.getElementById('unit').value, p=+document.getElementById('p').value;
+ if(d<=0||l<0||q<0||p<0)return;
+ const meters=unit==='ft'?l*0.3048:l, kgm=d*d/162, kgft=kgm*0.3048, totalLen=meters*q, totalKg=kgm*totalLen;
+ document.getElementById('r').innerHTML=`<div class="big">${totalKg.toFixed(2)} kg</div><div class="resultgrid"><div class="stat"><small>প্রতি মিটার</small>${kgm.toFixed(3)} kg</div><div class="stat"><small>প্রতি ফুট</small>${kgft.toFixed(3)} kg</div><div class="stat"><small>মোট দৈর্ঘ্য</small>${(totalLen).toFixed(2)} m</div><div class="stat"><small>আনুমানিক খরচ</small>৳${(totalKg*p).toLocaleString(undefined,{maximumFractionDigits:0})}</div></div>`;
+}
+</script>
+</head><body>
+<header class="nav"><div class="container navin">
+<a class="brand" href="index.html"><img src="assets/logo.svg" alt="NirmanTools BD logo"> <span>NirmanTools BD</span></a>
+<nav class="navlinks"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="guides.html">Guides</a><a href="about.html">About</a><button class="lang" onclick="setLang()">বাংলা / EN</button></nav>
+<button class="menu" onclick="toggleMenu()">☰</button></div></header>
+<main class="toolwrap"><div class="container"><div class="crumb">Home → Calculators → Rod Weight</div><div class="toolgrid">
+<section class="panel"><h1>রডের ওজন ক্যালকুলেটর</h1><p class="lead">Rod diameter, length, quantity এবং kg প্রতি দাম দিয়ে মোট ওজন ও খরচ হিসাব করুন।</p>
+<div class="row"><div class="field"><label>Diameter (mm)</label><select id="d"><option>6</option><option>8</option><option>10</option><option selected>12</option><option>16</option><option>20</option><option>25</option><option>32</option></select></div>
+<div class="field"><label>Unit</label><select id="unit"><option value="ft">Feet</option><option value="m">Meter</option></select></div></div>
+<div class="row"><div class="field"><label>Length</label><input id="l" type="number" value="40" min="0"></div><div class="field"><label>Quantity</label><input id="q" type="number" value="25" min="0"></div></div>
+<div class="field"><label>Price per kg (৳)</label><input id="p" type="number" value="120" min="0"></div>
+<button class="btn primary" onclick="calcRod()">হিসাব করুন</button></section>
+<section class="panel"><h2>ফলাফল</h2><div id="r" class="result"><span class="note">তথ্য দিয়ে “হিসাব করুন” চাপুন।</span></div>
+<div class="formula"><h3>Formula</h3><p>Steel weight per meter = D² ÷ 162, যেখানে D হলো diameter in mm.</p><p class="note">এটি theoretical weight। প্রকৃত ওজন/দাম manufacturer ও market অনুযায়ী ভিন্ন হতে পারে।</p></div></section></div></div></main>
+<footer class="footer"><div class="container">© 2026 NirmanTools BD · সহজ নির্মাণ হিসাব, এক জায়গায়।</div></footer>
+</body></html>

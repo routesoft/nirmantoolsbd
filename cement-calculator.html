@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cement Calculator Bangladesh – সিমেন্টের হিসাব</title><meta name="description" content="Calculate cement bags, sand and aggregate for concrete construction.">
+<link rel="canonical" href="">
+<meta property="og:title" content="Cement Calculator Bangladesh – সিমেন্টের হিসাব"><meta property="og:description" content="Calculate cement bags, sand and aggregate for concrete construction.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<script defer src="js/main.js"></script><script>
+function calcCement(){
+ const L=+cl.value,W=+cw.value,H=+ch.value,a=+ca.value,b=+cb.value,c=+cc.value;
+ if([L,W,H,a,b,c].some(x=>x<=0))return;
+ const wet=L*W*H,dry=wet*1.54,sum=a+b+c,cementVol=dry*a/sum,sand=dry*b/sum,agg=dry*c/sum,bags=cementVol*1440/50;
+ document.getElementById('cr').innerHTML=`<div class="big">${bags.toFixed(1)} bags</div><div class="resultgrid"><div class="stat"><small>Wet volume</small>${wet.toFixed(3)} m³</div><div class="stat"><small>Dry volume</small>${dry.toFixed(3)} m³</div><div class="stat"><small>Sand</small>${sand.toFixed(3)} m³</div><div class="stat"><small>Aggregate</small>${agg.toFixed(3)} m³</div></div>`;
+}
+</script>
+</head><body>
+<header class="nav"><div class="container navin">
+<a class="brand" href="index.html"><img src="assets/logo.svg" alt="NirmanTools BD logo"> <span>NirmanTools BD</span></a>
+<nav class="navlinks"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="guides.html">Guides</a><a href="about.html">About</a><button class="lang" onclick="setLang()">বাংলা / EN</button></nav>
+<button class="menu" onclick="toggleMenu()">☰</button></div></header>
+<main class="toolwrap"><div class="container"><div class="crumb">Home → Calculators → Cement</div><div class="toolgrid"><section class="panel"><h1>Cement Calculator Bangladesh</h1><p class="lead">Concrete mix ratio অনুযায়ী cement, sand, aggregate এবং cement bags হিসাব করুন।</p>
+<div class="row"><div class="field"><label>Length (m)</label><input id="cl" type="number" value="5" min="0" step="0.01"></div><div class="field"><label>Width (m)</label><input id="cw" type="number" value="4" min="0" step="0.01"></div></div>
+<div class="field"><label>Depth / Height (m)</label><input id="ch" type="number" value="0.1" min="0" step="0.01"></div>
+<h3>Concrete mix ratio</h3><div class="row"><div class="field"><label>Cement</label><input id="ca" type="number" value="1" min="0.1" step="0.1"></div><div class="field"><label>Sand</label><input id="cb" type="number" value="2" min="0.1" step="0.1"></div></div>
+<div class="field"><label>Aggregate</label><input id="cc" type="number" value="4" min="0.1" step="0.1"></div>
+<button class="btn primary" onclick="calcCement()">হিসাব করুন</button></section>
+<section class="panel"><h2>ফলাফল</h2><div id="cr" class="result"><span class="note">তথ্য দিয়ে হিসাব করুন।</span></div><div class="formula"><h3>Assumptions</h3><p>Dry volume factor = 1.54. Cement density is approximated as 1440 kg/m³ and one bag as 50 kg.</p><p class="note">Actual mix design should follow the project specification and engineer's requirements.</p></div></section></div></div></main>
+<footer class="footer"><div class="container">© 2026 NirmanTools BD · সহজ নির্মাণ হিসাব, এক জায়গায়।</div></footer>
+</body></html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>House Construction Cost Calculator Bangladesh 2026</title><meta name="description" content="Estimate house construction cost per square foot in Bangladesh.">
+<link rel="canonical" href="">
+<meta property="og:title" content="House Construction Cost Calculator Bangladesh 2026"><meta property="og:description" content="Estimate house construction cost per square foot in Bangladesh.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<script defer src="js/main.js"></script><script>
+const rates={Basic:1800,Standard:2500,Premium:3500};
+function calcHouse(){const a=+ha.value,f=+hf.value,q=hq.value; if(a<=0||f<=0)return; const total=a*f*rates[q]; const parts=[['Foundation',.10],['RCC structure',.25],['Rod/steel',.16],['Cement',.10],['Bricks',.07],['Sand',.05],['Electrical',.05],['Plumbing',.04],['Tiles',.05],['Painting',.04],['Doors/windows',.06],['Labour',.03]]; document.getElementById('hr').innerHTML=`<div class="big">৳${total.toLocaleString()}</div><div class="resultgrid"><div class="stat"><small>Area</small>${(a*f).toLocaleString()} sq ft</div><div class="stat"><small>Rate</small>৳${rates[q].toLocaleString()}/sq ft</div></div><div style="margin-top:12px">${parts.map(x=>`<div style="display:flex;justify-content:space-between;border-bottom:1px solid #e2e8f0;padding:7px 0"><span>${x[0]}</span><b>৳${Math.round(total*x[1]).toLocaleString()}</b></div>`).join('')}</div>`}
+</script>
+</head><body>
+<header class="nav"><div class="container navin">
+<a class="brand" href="index.html"><img src="assets/logo.svg" alt="NirmanTools BD logo"> <span>NirmanTools BD</span></a>
+<nav class="navlinks"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="guides.html">Guides</a><a href="about.html">About</a><button class="lang" onclick="setLang()">বাংলা / EN</button></nav>
+<button class="menu" onclick="toggleMenu()">☰</button></div></header>
+<main class="toolwrap"><div class="container"><div class="crumb">Home → Calculators → House Cost</div><div class="toolgrid"><section class="panel"><h1>House Construction Cost Calculator Bangladesh</h1><p class="lead">ফ্লোর এরিয়া, তলা ও construction quality অনুযায়ী একটি প্রাথমিক বাজেট estimate করুন।</p>
+<div class="field"><label>Area per floor (sq ft)</label><input id="ha" type="number" value="1000" min="1"></div><div class="field"><label>Number of floors</label><input id="hf" type="number" value="2" min="1"></div>
+<div class="field"><label>Construction quality</label><select id="hq"><option>Basic</option><option selected>Standard</option><option>Premium</option></select></div>
+<p class="note">Default rates are editable in the JavaScript configuration. Update them to match your local market.</p><button class="btn primary" onclick="calcHouse()">Estimate করুন</button></section>
+<section class="panel"><h2>Estimated Budget</h2><div id="hr" class="result"><span class="note">তথ্য দিয়ে estimate করুন।</span></div><div class="formula"><h3>Important</h3><p>This is a planning estimate, not a quotation or engineering BOQ. Actual costs vary by location, design, material brand, labour and finishing specification.</p></div></section></div></div></main>
+<footer class="footer"><div class="container">© 2026 NirmanTools BD · সহজ নির্মাণ হিসাব, এক জায়গায়।</div></footer>
+</body></html>
