@@ -1,2 +1,1059 @@
-<!doctype html><html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Brick Wall Calculator – Bricks, Cement & Sand</title><meta name="description" content="দেয়ালের ইট, mortar volume এবং আনুমানিক material quantity হিসাব করুন।"><link rel="canonical" href=""><meta property="og:title" content="Brick Wall Calculator – Bricks, Cement & Sand"><meta property="og:description" content="দেয়ালের ইট, mortar volume এবং আনুমানিক material quantity হিসাব করুন।"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="css/style.css"><script defer src="js/main.js"></script><script>function v(id){return +document.getElementById(id).value} function out(...a){document.getElementById('result').innerHTML='<div class="big">'+a[0]+'</div>'+a.slice(1).map(x=>'<div class="stat" style="margin-top:8px">'+x+'</div>').join('');} function calc(){const L=+v('l'),H=+v('h'),T=+v('t'),w=+v('wast'); if([L,H,T].some(x=>x<=0))return; const wall=L*H*T, bricks=wall*500*(1+w/100), mortar=wall*.25*(1+w/100); out(`Wall volume: ${wall.toFixed(3)} m³`,`Approx. bricks: ${Math.ceil(bricks).toLocaleString()}`,`Mortar: ${mortar.toFixed(3)} m³`,`Allowance: ${w}%`);}</script></head><body><header class="nav"><div class="container navin"><a class="brand" href="index.html"><img src="assets/logo.svg" alt="NirmanTools BD logo"> <span>NirmanTools BD</span></a><nav class="navlinks"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="guides.html">Guides</a><a href="about.html">About</a><button class="lang" onclick="setLang()">বাংলা / EN</button></nav><button class="menu" onclick="toggleMenu()">☰</button></div></header><main class="toolwrap"><div class="container"><div class="crumb">Home → Calculators → Brick Wall Calculator</div><div class="toolgrid"><section class="panel"><span class="badge">🇧🇩 Bangladesh</span><h1>Brick Wall Calculator</h1><p class="lead">দেয়ালের ইট, mortar volume এবং আনুমানিক material quantity হিসাব করুন।</p><div class="field"><label>Wall length (m)</label><input id="l" type="number" value="10" min="0" step="any"></div><div class="field"><label>Wall height (m)</label><input id="h" type="number" value="3" min="0" step="any"></div><div class="field"><label>Wall thickness (m)</label><input id="t" type="number" value="0.125" min="0" step="any"></div><div class="field"><label>Wastage (%)</label><input id="wast" type="number" value="5" min="0" step="any"></div><button class="btn primary" onclick="calc()">হিসাব করুন</button><div class="tool-actions"><button class="btn secondary" onclick="copyResult()">Copy Result</button><button class="btn secondary" onclick="shareResult()">Share</button></div></section><section class="panel"><h2>ফলাফল</h2><div id="result" class="result"><span class="note">তথ্য দিয়ে “হিসাব করুন” চাপুন।</span></div><div class="formula"><h3>Important</h3><p class="note">এগুলো আনুমানিক হিসাব। প্রকৃত quantity, mix ratio, wastage ও site condition অনুযায়ী ফল ভিন্ন হতে পারে।</p></div></section></div><div class="seo-copy"><h2>Brick Wall Calculator কীভাবে ব্যবহার করবেন?</h2><p>আপনার মাপগুলো মিটারে দিন এবং হিসাব করুন। ফলাফল planning-এর জন্য ব্যবহার করুন; structural design বা final material ordering-এর আগে qualified engineer/contractor-এর পরামর্শ নিন।</p></div></div></main><footer class="footer"><div class="container">© 2026 NirmanTools BD · সহজ নির্মাণ হিসাব, এক জায়গায়।</div></footer></body></html>
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Brick, Plaster, Tile, Paint &amp; Concrete Calculator Bangladesh – ইটের হিসাব ও নির্মাণ খরচ | NirmanTools BD</title>
+<meta name="description" content="বাংলাদেশের জন্য সম্পূর্ণ নির্মাণ খরচের ক্যালকুলেটর: ইটের হিসাব, প্লাস্টার হিসাব, টাইলস হিসাব, রং হিসাব এবং কংক্রিট মিক্স হিসাব — এক জায়গায়, নির্ভুল ও ফ্রি।">
+<meta name="keywords" content="ইটের হিসাব, brick calculator bangladesh, ব্রিক ক্যালকুলেটর, নির্মাণ খরচ ক্যালকুলেটর, প্লাস্টার ক্যালকুলেটর, টাইলস ক্যালকুলেটর, রং ক্যালকুলেটর, কংক্রিট ক্যালকুলেটর, সিমেন্ট বালি হিসাব, বাড়ি তৈরির খরচ, construction cost calculator bangladesh, nirmantools bd">
+<link rel="canonical" href="https://nirmantoolsbd.vercel.app/costing">
+<link rel="icon" href="https://nirmantoolsbd.vercel.app/assets/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Construction Costing Calculator – NirmanTools BD">
+<meta property="og:description" content="ইট, প্লাস্টার, টাইলস, রং ও কংক্রিটের আনুমানিক হিসাব ও খরচ বের করুন এক জায়গায়।">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nirmantoolsbd.vercel.app/costing">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    --clay:#B5482A;
+    --clay-dark:#8C3A22;
+    --mortar:#E4DCCB;
+    --ink:#2B2420;
+    --paper:#FBF8F3;
+    --line:#DDD2BE;
+    --stat-bg:#F4EEE1;
+    --good:#3E7D4C;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Georgia","Noto Serif Bengali","Noto Serif",serif;
+    line-height:1.5;
+  }
+  header.nav{background:var(--ink);border-bottom:4px solid var(--clay);}
+  .container{max-width:1100px;margin:0 auto;padding:0 20px;}
+  .navin{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;font-size:1.15rem;}
+  .brand .brick-icon{width:26px;height:18px;background:var(--clay);border-radius:2px;position:relative;flex:none;}
+  .brand .brick-icon::after{content:"";position:absolute;left:0;right:0;top:8px;height:2px;background:var(--ink);}
+  .navlinks{display:flex;align-items:center;gap:20px;}
+  .navlinks a{color:#EFE7DA;text-decoration:none;font-size:.92rem;font-family:Arial,Helvetica,sans-serif;}
+  .navlinks a:hover, .navlinks a.active{color:var(--clay);}
+  .lang{background:none;border:1px solid #6b6055;color:#EFE7DA;border-radius:4px;padding:5px 9px;font-family:inherit;font-size:.8rem;cursor:pointer;}
+  .lang:hover{border-color:var(--clay);color:var(--clay);}
+  .menu{display:none;background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer;}
+  .navlinks.open{
+    display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;
+    background:var(--ink);padding:16px 20px 20px;gap:16px;border-bottom:4px solid var(--clay);z-index:20;
+  }
+  header.nav{position:relative;}
+
+  main.toolwrap{padding:32px 0 60px;}
+  h1{font-size:1.55rem;margin:0 0 6px;}
+  .lead{color:#5c5348;margin:0 0 22px;font-size:.97rem;}
+
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
+  .tabbtn{
+    padding:9px 16px;border:1px solid var(--line);border-radius:20px;
+    background:#fff;color:var(--ink);cursor:pointer;font-family:Arial,Helvetica,sans-serif;
+    font-size:.92rem;
+  }
+  .tabbtn.active{background:var(--clay);color:#fff;border-color:var(--clay);}
+
+  .unitswitch{display:flex;gap:10px;align-items:center;margin-bottom:20px;font-family:Arial,Helvetica,sans-serif;font-size:.88rem;color:#5c5348;}
+  .unitswitch label{display:flex;align-items:center;gap:5px;cursor:pointer;}
+
+  .panelgrid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:6px;padding:24px;}
+  .panel h2{font-size:1.1rem;margin:0 0 14px;}
+  .panel h3{font-size:.98rem;margin:18px 0 10px;color:var(--clay-dark);}
+
+  .field{margin-bottom:12px;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+  .field label{display:block;font-size:.8rem;color:#7a6f60;margin-bottom:4px;font-family:Arial,Helvetica,sans-serif;}
+  input, select{
+    width:100%;padding:8px 9px;border:1px solid var(--line);border-radius:4px;
+    background:var(--paper);color:var(--ink);font-size:.95rem;font-family:inherit;
+  }
+  input:focus, select:focus{outline:2px solid var(--clay);outline-offset:1px;border-color:var(--clay);}
+
+  .presetrow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+  .preset{
+    padding:6px 11px;border:1px solid var(--line);border-radius:16px;background:var(--stat-bg);
+    font-size:.8rem;cursor:pointer;font-family:Arial,Helvetica,sans-serif;
+  }
+  .preset:hover{border-color:var(--clay);}
+
+  .itemrow{border:1px dashed var(--line);border-radius:5px;padding:12px;margin-bottom:10px;position:relative;background:var(--paper);}
+  .itemrow .rm{
+    position:absolute;top:8px;right:8px;background:none;border:none;color:#b5482a;
+    font-size:1rem;cursor:pointer;
+  }
+  .addbtn{
+    width:100%;padding:9px;border:1px dashed var(--clay);border-radius:5px;background:none;
+    color:var(--clay-dark);font-family:Arial,Helvetica,sans-serif;font-weight:700;cursor:pointer;margin-bottom:14px;
+  }
+  .addbtn:hover{background:var(--stat-bg);}
+
+  .calcbtn{
+    width:100%;padding:12px;border:none;border-radius:5px;background:var(--clay);color:#fff;
+    font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:1rem;cursor:pointer;
+  }
+  .calcbtn:hover{background:var(--clay-dark);}
+
+  .resultgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px;}
+  .stat{background:var(--stat-bg);border-radius:5px;padding:10px 12px;font-family:Arial,Helvetica,sans-serif;}
+  .stat small{display:block;color:#8a7f70;font-size:.7rem;margin-bottom:3px;}
+  .stat b{font-size:1.05rem;}
+  .stat.wide{grid-column:1 / -1;}
+  .note{color:#8a7f70;font-size:.9rem;}
+  .costbox{background:#EAF4EC;border-radius:5px;padding:14px;margin-top:14px;font-family:Arial,Helvetica,sans-serif;}
+  .costbox .totalcost{font-size:1.4rem;font-weight:700;color:var(--good);}
+
+  .tabsection{display:none;}
+  .tabsection.active{display:block;}
+
+  @media (max-width:800px){
+    .panelgrid{grid-template-columns:1fr;}
+    .row2,.row3{grid-template-columns:1fr 1fr;}
+    .navlinks{display:none;}
+    .menu{display:block;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container navin">
+    <a class="brand" href="https://nirmantoolsbd.vercel.app/"><span class="brick-icon"></span> NirmanTools BD</a>
+    <nav class="navlinks" id="navlinks">
+      <a href="https://nirmantoolsbd.vercel.app/">Home</a>
+      <a href="https://nirmantoolsbd.vercel.app/#calculators">Calculators</a>
+      <a href="https://nirmantoolsbd.vercel.app/guides">Guides</a>
+      <a href="https://nirmantoolsbd.vercel.app/costing" class="active">Costing</a>
+      <a href="https://nirmantoolsbd.vercel.app/about">About</a>
+      <button class="lang" type="button" onclick="setLang()">বাংলা / EN</button>
+    </nav>
+    <button class="menu" type="button" aria-label="Menu" aria-expanded="false" onclick="toggleMenu()">☰</button>
+  </div>
+</header>
+
+<main class="toolwrap">
+  <div class="container">
+    <h1>🧱 Construction Costing Calculator</h1>
+    <p class="lead">বাংলাদেশের সিভিল ইঞ্জিনিয়ার, বিল্ডার এবং সাধারণ ব্যবহারকারীদের জন্য — ইট, প্লাস্টার, টাইলস, রং ও কংক্রিটের আনুমানিক খরচ এক জায়গায়।</p>
+
+    <div class="unitswitch">
+      <span>Unit System:</span>
+      <label><input type="radio" name="unitsys" value="fps" checked onchange="setUnitSystem('fps')"> FPS (ft, in)</label>
+      <label><input type="radio" name="unitsys" value="metric" onchange="setUnitSystem('metric')"> Metric (m, mm)</label>
+    </div>
+
+    <div class="tabs">
+      <button class="tabbtn active" onclick="showTab('brick')">🧱 Brick Estimator</button>
+      <button class="tabbtn" onclick="showTab('plaster')">🏗️ Plaster Calculator</button>
+      <button class="tabbtn" onclick="showTab('tile')">🎨 Floor Tiles Calculator</button>
+      <button class="tabbtn" onclick="showTab('paint')">🎨 Wall Paint Calculator</button>
+      <button class="tabbtn" onclick="showTab('concrete')">🏗️ Concrete Calculator</button>
+    </div>
+
+    <!-- ===================== BRICK ===================== -->
+    <section class="tabsection active" id="tab-brick">
+      <div class="panelgrid">
+        <div class="panel">
+          <h2>⚙️ Default Brick Settings</h2>
+          <div class="row3">
+            <div class="field"><label>Brick Length (<span class="unit-tag-small">in</span>)</label><input id="b_len" class="unitval-small" type="number" value="9" step="0.01"></div>
+            <div class="field"><label>Brick Height (<span class="unit-tag-small">in</span>)</label><input id="b_hgt" class="unitval-small" type="number" value="2.75" step="0.01"></div>
+            <div class="field"><label>Brick Width/Depth (<span class="unit-tag-small">in</span>)</label><input id="b_wid" class="unitval-small" type="number" value="4.5" step="0.01"></div>
+          </div>
+          <div class="row2">
+            <div class="field"><label>Mortar Joint Gap (<span class="unit-tag-small">in</span>)</label><input id="b_joint" class="unitval-small" type="number" value="0.5" step="0.01"></div>
+            <div class="field"><label>Wastage Factor (%)</label><input id="b_waste" type="number" value="5" step="0.5"></div>
+          </div>
+
+          <h3>Quick Presets</h3>
+          <div class="presetrow">
+            <button class="preset" onclick="applyBrickPreset(228.6,76.2,114.3)">Standard (9×3×4.5in)</button>
+            <button class="preset" onclick="applyBrickPreset(193.675,57.15,92.075)">Modular (7.625×2.25×3.625in)</button>
+            <button class="preset" onclick="applyBrickPreset(203.2,69.85,76.2)">Queen (8×2.75×3in)</button>
+            <button class="preset" onclick="applyBrickPreset(244.475,69.85,76.2)">King (9.625×2.75×3in)</button>
+            <button class="preset" onclick="applyBrickPreset(240,115,70)">BD Standard (240×115×70mm)</button>
+          </div>
+
+          <h3>🧱 Mortar Mix Settings</h3>
+          <div class="field">
+            <label>Mortar Mix Ratio</label>
+            <select id="b_ratiopreset" onchange="applyBrickRatioPreset()">
+              <option value="6">1:6 (Cement:Sand) - General</option>
+              <option value="5">1:5 (Cement:Sand) - Strong</option>
+              <option value="4" selected>1:4 (Cement:Sand) - High Strength</option>
+              <option value="3">1:3 (Cement:Sand) - Very Strong</option>
+              <option value="custom">Custom Ratio</option>
+            </select>
+          </div>
+          <div class="row2">
+            <div class="field"><label>Cement Parts</label><input id="b_cementpart" type="number" value="1" step="0.1"></div>
+            <div class="field"><label>Sand Parts</label><input id="b_sandpart" type="number" value="4" step="0.1"></div>
+          </div>
+
+          <h3>Material Costs (Optional)</h3>
+          <div class="row3">
+            <div class="field"><label>Cement (per bag)</label><input id="b_cementcost" type="number" value="0"></div>
+            <div class="field"><label>Sand (per cft)</label><input id="b_sandcost" type="number" value="0"></div>
+            <div class="field"><label>Brick (per piece)</label><input id="b_brickcost" type="number" value="12"></div>
+          </div>
+          <div class="field"><label>Currency Symbol</label><input id="b_currency" type="text" value="৳"></div>
+        </div>
+
+        <div class="panel">
+          <h2>Wall Sections</h2>
+          <div id="b_wallsHolder"></div>
+          <button class="addbtn" onclick="addBrickWall()">+ Add Wall</button>
+          <button class="calcbtn" onclick="calcBrick()">Calculate Brick Requirement</button>
+
+          <div id="b_results" style="margin-top:18px;"><span class="note">তথ্য দিয়ে হিসাব করুন।</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PLASTER ===================== -->
+    <section class="tabsection" id="tab-plaster">
+      <div class="panelgrid">
+        <div class="panel">
+          <h2>🏗️ Plaster Settings</h2>
+          <div class="field">
+            <label>Plaster Type</label>
+            <select id="p_type" onchange="applyPlasterType()">
+              <option value="12">Internal Plaster (12mm)</option>
+              <option value="15">External Plaster (15mm)</option>
+              <option value="10">Ceiling Plaster (10mm)</option>
+              <option value="custom">Custom Thickness</option>
+            </select>
+          </div>
+          <div class="field"><label>Custom Thickness (mm)</label><input id="p_customthick" type="number" value="12"></div>
+
+          <div class="field">
+            <label>Plaster Mix Ratio</label>
+            <select id="p_ratiopreset" onchange="applyPlasterRatioPreset()">
+              <option value="3">1:3 (Cement:Sand) - High Quality</option>
+              <option value="4" selected>1:4 (Cement:Sand) - Standard</option>
+              <option value="5">1:5 (Cement:Sand) - Economy</option>
+              <option value="6">1:6 (Cement:Sand) - Basic</option>
+              <option value="custom">Custom Ratio</option>
+            </select>
+          </div>
+          <div class="row2">
+            <div class="field"><label>Cement Parts</label><input id="p_cementpart" type="number" value="1" step="0.1"></div>
+            <div class="field"><label>Sand Parts</label><input id="p_sandpart" type="number" value="4" step="0.1"></div>
+          </div>
+          <div class="field"><label>Wastage Factor (%)</label><input id="p_waste" type="number" value="8"></div>
+
+          <h3>💰 Material Costs (Optional)</h3>
+          <div class="row3">
+            <div class="field"><label>Cement (per bag)</label><input id="p_cementcost" type="number" value="0"></div>
+            <div class="field"><label>Sand (per cft)</label><input id="p_sandcost" type="number" value="0"></div>
+            <div class="field"><label>Currency</label><input id="p_currency" type="text" value="৳"></div>
+          </div>
+
+          <p class="note">💡 Internal walls: 12mm (1:4). External walls: 15mm (1:3). Ceiling: 10mm (1:3). Add 5–10% wastage.</p>
+        </div>
+
+        <div class="panel">
+          <h2>Plaster Surfaces</h2>
+          <div id="p_surfHolder"></div>
+          <button class="addbtn" onclick="addPlasterSurf()">+ Add Surface</button>
+          <button class="calcbtn" onclick="calcPlaster()">Calculate Plaster Requirement</button>
+          <div id="p_results" style="margin-top:18px;"><span class="note">তথ্য দিয়ে হিসাব করুন।</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TILE ===================== -->
+    <section class="tabsection" id="tab-tile">
+      <div class="panelgrid">
+        <div class="panel">
+          <h2>🎨 Tile Settings</h2>
+          <div class="field">
+            <label>Tile Size Preset</label>
+            <select id="t_sizepreset" onchange="applyTileSizePreset()">
+              <option value="12x12">12" × 12"</option>
+              <option value="16x16">16" × 16"</option>
+              <option value="18x18">18" × 18"</option>
+              <option value="24x24" selected>24" × 24"</option>
+              <option value="custom">Custom Size</option>
+            </select>
+          </div>
+          <div class="row2">
+            <div class="field"><label>Tile Length (<span class="unit-tag-small">in</span>)</label><input id="t_len" class="unitval-small" type="number" value="24"></div>
+            <div class="field"><label>Tile Width (<span class="unit-tag-small">in</span>)</label><input id="t_wid" class="unitval-small" type="number" value="24"></div>
+          </div>
+          <div class="row2">
+            <div class="field"><label>Grout Gap (mm)</label><input id="t_grout" type="number" value="4"></div>
+            <div class="field"><label>Wastage Factor (%)</label><input id="t_waste" type="number" value="10"></div>
+          </div>
+
+          <h3>🏗️ Installation Method</h3>
+          <div class="field">
+            <label>Choose Installation Method</label>
+            <select id="t_method" onchange="toggleTileMethod()">
+              <option value="adhesive">Tile Adhesive (Modern)</option>
+              <option value="cementbed">Cement & Sand Bed (Traditional)</option>
+            </select>
+          </div>
+
+          <div id="t_adhesiveOpts">
+            <div class="field">
+              <label>Adhesive Bed Thickness</label>
+              <select id="t_adhtype" onchange="applyAdhesiveType()">
+                <option value="4">Thin-set Adhesive (3–5mm bed)</option>
+                <option value="9">Medium-bed Mortar (6–12mm bed)</option>
+                <option value="17">Thick-bed Mortar (15–20mm bed)</option>
+                <option value="custom">Custom Bed Thickness</option>
+              </select>
+            </div>
+            <div class="field"><label>Bed Thickness (mm)</label><input id="t_bedmm" type="number" value="4"></div>
+          </div>
+
+          <div id="t_cementbedOpts" style="display:none;">
+            <div class="field">
+              <label>Mix Ratio (Cement:Sand)</label>
+              <select id="t_bedratio">
+                <option value="3">1:3 (High Strength)</option>
+                <option value="4" selected>1:4 (Standard)</option>
+                <option value="5">1:5 (Economy)</option>
+                <option value="6">1:6 (Basic)</option>
+              </select>
+            </div>
+            <div class="field"><label>Bed Thickness (mm) — Standard: 20–30mm</label><input id="t_bedthick2" type="number" value="25"></div>
+          </div>
+
+          <h3>💰 Material Costs (Optional)</h3>
+          <div class="row2">
+            <div class="field"><label>Tile Cost (per piece)</label><input id="t_tilecost" type="number" value="0"></div>
+            <div class="field"><label>Adhesive Cost (per bag)</label><input id="t_adhcost" type="number" value="0"></div>
+          </div>
+          <div class="row3">
+            <div class="field"><label>Cement (per bag)</label><input id="t_cementcost" type="number" value="0"></div>
+            <div class="field"><label>Sand (per cft)</label><input id="t_sandcost" type="number" value="0"></div>
+            <div class="field"><label>Currency</label><input id="t_currency" type="text" value="৳"></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Floor Areas</h2>
+          <div id="t_floorHolder"></div>
+          <button class="addbtn" onclick="addTileFloor()">+ Add Floor</button>
+          <button class="calcbtn" onclick="calcTile()">Calculate Tile Requirement</button>
+          <div id="t_results" style="margin-top:18px;"><span class="note">তথ্য দিয়ে হিসাব করুন।</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PAINT ===================== -->
+    <section class="tabsection" id="tab-paint">
+      <div class="panelgrid">
+        <div class="panel">
+          <h2>🎨 Paint Settings</h2>
+          <div class="field">
+            <label>Paint Type</label>
+            <select id="pt_type">
+              <option value="Emulsion Paint (Interior)">Emulsion Paint (Interior)</option>
+              <option value="Oil-Based Paint">Oil-Based Paint</option>
+              <option value="Acrylic Paint (Exterior)">Acrylic Paint (Exterior)</option>
+              <option value="Primer/Undercoat">Primer/Undercoat</option>
+              <option value="Enamel Paint">Enamel Paint</option>
+            </select>
+          </div>
+          <div class="row2">
+            <div class="field"><label>Paint Coverage (sq ft/liter)</label><input id="pt_coverage" type="number" value="140"></div>
+            <div class="field"><label>Number of Coats</label>
+              <select id="pt_coats"><option value="1">1 Coat</option><option value="2" selected>2 Coats</option><option value="3">3 Coats</option></select>
+            </div>
+          </div>
+          <div class="field"><label>Wastage Factor (%)</label><input id="pt_waste" type="number" value="10"></div>
+
+          <h3>🪣 Container Preferences</h3>
+          <div class="field">
+            <label>Preferred Container Size</label>
+            <select id="pt_container">
+              <option value="1">1 Liter</option>
+              <option value="4" selected>4 Liters (1 Gallon)</option>
+              <option value="10">10 Liters</option>
+              <option value="20">20 Liters (5 Gallons)</option>
+            </select>
+          </div>
+
+          <h3>💰 Material Costs (Optional)</h3>
+          <div class="row3">
+            <div class="field"><label>Paint (per liter)</label><input id="pt_paintcost" type="number" value="0"></div>
+            <div class="field"><label>Primer (per liter)</label><input id="pt_primercost" type="number" value="0"></div>
+            <div class="field"><label>Currency</label><input id="pt_currency" type="text" value="৳"></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Walls to Paint</h2>
+          <div id="pt_wallHolder"></div>
+          <button class="addbtn" onclick="addPaintWall()">+ Add Wall</button>
+          <button class="calcbtn" onclick="calcPaint()">Calculate Paint Requirement</button>
+          <div id="pt_results" style="margin-top:18px;"><span class="note">তথ্য দিয়ে হিসাব করুন।</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONCRETE ===================== -->
+    <section class="tabsection" id="tab-concrete">
+      <div class="panelgrid">
+        <div class="panel">
+          <h2>🏗️ Concrete Mix Settings</h2>
+          <div class="field">
+            <label>Concrete Grade</label>
+            <select id="c_grade" onchange="applyConcreteGrade()">
+              <option value="1,3,6">M10 (1:3:6) - Leveling</option>
+              <option value="1,2,4">M15 (1:2:4) - Foundation</option>
+              <option value="1,1.5,3" selected>M20 (1:1.5:3) - Standard</option>
+              <option value="1,1,2">M25 (1:1:2) - Heavy Duty</option>
+              <option value="1,0.75,1.5">M30 (1:0.75:1.5) - High Strength</option>
+              <option value="custom">Custom Ratio</option>
+            </select>
+          </div>
+          <div class="row3">
+            <div class="field"><label>Cement</label><input id="c_cementpart" type="number" value="1" step="0.1"></div>
+            <div class="field"><label>Sand</label><input id="c_sandpart" type="number" value="1.5" step="0.1"></div>
+            <div class="field"><label>Aggregate</label><input id="c_aggpart" type="number" value="3" step="0.1"></div>
+          </div>
+          <div class="field"><label>Wastage Factor (%)</label><input id="c_waste" type="number" value="5"></div>
+
+          <h3>🔩 Steel Reinforcement (Optional)</h3>
+          <div class="field"><label><input type="checkbox" id="c_steelon" style="width:auto;" onchange="toggleSteel()"> Include Steel Rebar</label></div>
+          <div id="c_steelOpts" style="display:none;">
+            <div class="field">
+              <label>Steel Reinforcement Preset</label>
+              <select id="c_steelpreset" onchange="applySteelPreset()">
+                <option value="0.18">One-Way Slab (ACI Min: 0.18%)</option>
+                <option value="0.18">Two-Way Slab (ACI Min: 0.18%)</option>
+                <option value="0.33">Beam Min (ACI: 0.33%)</option>
+                <option value="1.25">Beam Typical (1.0–1.5%)</option>
+                <option value="2.0">Beam Heavy Duty (2.0%)</option>
+                <option value="1.0">Column Min (ACI: 1.0%)</option>
+                <option value="1.75">Column Typical (1.5–2.0%)</option>
+                <option value="3.0">Column Heavy Duty (3.0%)</option>
+                <option value="0.75">Footing (0.5–1.0%)</option>
+                <option value="0.15">Wall (ACI Min: 0.15%)</option>
+                <option value="custom">Custom Percentage</option>
+              </select>
+            </div>
+            <div class="field"><label>Custom Steel Percentage (%) — ACI 318: Min 0.15% (walls) to Max 8% (columns)</label><input id="c_steelpct" type="number" value="0.18" step="0.01"></div>
+          </div>
+
+          <h3>💰 Material Costs (Optional)</h3>
+          <div class="row2">
+            <div class="field"><label>Cement (per bag)</label><input id="c_cementcost" type="number" value="0"></div>
+            <div class="field"><label>Sand (per cft)</label><input id="c_sandcost" type="number" value="0"></div>
+          </div>
+          <div class="row3">
+            <div class="field"><label>Aggregate (per cft)</label><input id="c_aggcost" type="number" value="0"></div>
+            <div class="field"><label>Steel (per kg)</label><input id="c_steelcost" type="number" value="0"></div>
+            <div class="field"><label>Currency</label><input id="c_currency" type="text" value="৳"></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Concrete Elements</h2>
+          <div id="c_elHolder"></div>
+          <button class="addbtn" onclick="addConcreteEl()">+ Add Element</button>
+          <button class="calcbtn" onclick="calcConcrete()">Calculate Concrete Requirement</button>
+          <div id="c_results" style="margin-top:18px;"><span class="note">তথ্য দিয়ে হিসাব করুন।</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" style="margin-top:32px;">
+      <h2>ইটের হিসাব ও নির্মাণ খরচ ক্যালকুলেটর সম্পর্কে বিস্তারিত গাইড</h2>
+      <p>বাংলাদেশে বাড়ি বা যেকোনো স্থাপনা তৈরির আগে সবচেয়ে গুরুত্বপূর্ণ ধাপ হলো সঠিক <strong>ইটের হিসাব</strong> ও <strong>নির্মাণ খরচ ক্যালকুলেটর</strong> ব্যবহার করে বাজেট নির্ধারণ করা। NirmanTools BD-এর এই <strong>brick calculator bangladesh</strong> টুলটি দিয়ে আপনি সহজেই দেয়াল গাঁথতে কত ইট লাগবে, কত ব্যাগ সিমেন্ট ও কত সিএফটি বালি লাগবে তা নির্ভুলভাবে বের করতে পারবেন।</p>
+
+      <h3>ব্রিক ক্যালকুলেটর দিয়ে ইটের হিসাব কেন গুরুত্বপূর্ণ?</h3>
+      <p>সঠিক <strong>ব্রিক ক্যালকুলেটর</strong> ব্যবহার না করলে ইট কম বা বেশি কেনার ঝুঁকি থাকে, যা প্রকল্পের খরচ বাড়িয়ে দেয়। আমাদের <strong>ইটের হিসাব ক্যালকুলেটর</strong> মর্টার জয়েন্ট, ওয়েস্টেজ এবং প্রকৃত brick dimension বিবেচনা করে হিসাব করে, ফলে <strong>নির্মাণ খরচ ক্যালকুলেটর</strong> হিসেবে এটি অনেক বেশি নির্ভরযোগ্য।</p>
+
+      <h3>প্লাস্টার, টাইলস, রং ও কংক্রিট ক্যালকুলেটর</h3>
+      <p>শুধু ইটের হিসাব নয় — এই একই টুলে আপনি পাবেন <strong>প্লাস্টার ক্যালকুলেটর</strong> (সিমেন্ট-বালি মিক্স অনুপাত অনুযায়ী), <strong>টাইলস ক্যালকুলেটর</strong> (adhesive বা cement-sand bed পদ্ধতিতে), <strong>রং ক্যালকুলেটর</strong> (কভারেজ রেট ও কোট সংখ্যা অনুযায়ী), এবং <strong>কংক্রিট ক্যালকুলেটর</strong> (M10 থেকে M30 গ্রেড ও স্টিল রিইনফোর্সমেন্টসহ)।</p>
+
+      <h3>বাড়ি তৈরির খরচ কীভাবে কমাবেন?</h3>
+      <p>বাড়ি তৈরির খরচ নিয়ন্ত্রণে রাখতে হলে প্রতিটি ধাপে আগে থেকে <strong>construction cost calculator bangladesh</strong> দিয়ে হিসাব করে নেওয়া উচিত। ইট, সিমেন্ট, বালি, রড ও রং-এর সঠিক পরিমাণ জানা থাকলে অপচয় কমে এবং বাজেট সুনির্দিষ্ট থাকে। NirmanTools BD-এর সব ক্যালকুলেটর সম্পূর্ণ ফ্রি এবং বাংলাদেশের স্ট্যান্ডার্ড অনুযায়ী তৈরি।</p>
+
+      <h3>সচরাচর জিজ্ঞাসিত প্রশ্ন</h3>
+      <p><strong>১. স্ট্যান্ডার্ড ইটের সাইজ কত?</strong> বাংলাদেশে সাধারণত ৯.৫″ × ৪.৫″ × ২.৭৫″ (মসলা ছাড়া) সাইজের ইট বেশি ব্যবহৃত হয়।</p>
+      <p><strong>২. কত শতাংশ ওয়েস্টেজ ধরা উচিত?</strong> সাধারণত ৫–১০% ওয়েস্টেজ ধরে ইটের হিসাব করা ভালো।</p>
+      <p><strong>৩. প্লাস্টারের মশলার অনুপাত কত হওয়া উচিত?</strong> সাধারণ দেয়ালের জন্য ১:৪ এবং বাইরের দেয়ালের জন্য ১:৩ অনুপাত ব্যবহার করা হয়।</p>
+    </section>
+
+    <p class="note" style="margin-top:26px;text-align:center;">Professional construction calculators for civil engineers · NirmanTools BD · Calculations based on standard building practices · ইটের হিসাব, প্লাস্টার হিসাব, টাইলস হিসাব, রং হিসাব ও কংক্রিট হিসাব — সব এক জায়গায়</p>
+  </div>
+</main>
+
+<footer class="footer" style="border-top:1px solid var(--line);padding:20px 0;color:#8a7f70;font-size:.85rem;">
+  <div class="container" style="display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;">
+    <span>© 2026 NirmanTools BD · সহজ নির্মাণ হিসাব, এক জায়গায়।</span>
+    <nav style="display:flex;gap:16px;flex-wrap:wrap;">
+      <a href="https://nirmantoolsbd.vercel.app/" style="color:var(--clay-dark);text-decoration:none;">Home</a>
+      <a href="https://nirmantoolsbd.vercel.app/#calculators" style="color:var(--clay-dark);text-decoration:none;">Calculators</a>
+      <a href="https://nirmantoolsbd.vercel.app/guides" style="color:var(--clay-dark);text-decoration:none;">Guides</a>
+      <a href="https://nirmantoolsbd.vercel.app/about" style="color:var(--clay-dark);text-decoration:none;">About Us</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+/* ============ GLOBAL ============ */
+let unitSystem = 'fps'; // 'fps' or 'metric'
+function setUnitSystem(v){
+  if(v === unitSystem) return;
+  const goingToMetric = (v === 'metric');
+  document.querySelectorAll('.unitval').forEach(inp => {
+    const val = parseFloat(inp.value);
+    if(!isNaN(val) && val !== 0){
+      inp.value = goingToMetric ? +(val / 3.28084).toFixed(3) : +(val * 3.28084).toFixed(3);
+    }
+  });
+  unitSystem = v;
+  document.querySelectorAll('.unit-tag').forEach(el => { el.textContent = lenLabel(); });
+}
+function lenLabel(){ return unitSystem === 'fps' ? 'ft' : 'm'; }
+function smallLabel(){ return unitSystem === 'fps' ? 'in' : 'mm'; }
+function toFt(v){ return unitSystem === 'fps' ? v : v * 3.28084; }
+function toInches(v){ return unitSystem === 'fps' ? v : v / 25.4; }
+
+function toggleMenu(){
+  const nav = document.getElementById('navlinks');
+  const btn = document.querySelector('.menu');
+  const isOpen = nav.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+}
+let currentLang = 'bn';
+function setLang(){
+  currentLang = currentLang === 'bn' ? 'en' : 'bn';
+  document.documentElement.lang = currentLang;
+  document.querySelector('.lang').textContent = currentLang === 'bn' ? 'বাংলা / EN' : 'EN / বাংলা';
+}
+window.addEventListener('resize', () => {
+  if(window.innerWidth > 800){
+    const nav = document.getElementById('navlinks');
+    if(nav){ nav.classList.remove('open'); }
+    const menuBtn = document.querySelector('.menu');
+    if(menuBtn){ menuBtn.setAttribute('aria-expanded','false'); }
+  }
+});
+
+function showTab(name){
+  document.querySelectorAll('.tabsection').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tabbtn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+/* ============ BRICK ============ */
+let brickWallCount = 0;
+function addBrickWall(){
+  brickWallCount++;
+  const id = brickWallCount;
+  const div = document.createElement('div');
+  div.className = 'itemrow';
+  div.id = 'bwall_' + id;
+  div.innerHTML = `
+    <button class="rm" onclick="document.getElementById('bwall_${id}').remove()">✕</button>
+    <div class="row3">
+      <div class="field"><label>Length (<span class="unit-tag">${lenLabel()}</span>)</label><input class="bw_len unitval" type="number" value="20"></div>
+      <div class="field"><label>Height (<span class="unit-tag">${lenLabel()}</span>)</label><input class="bw_hgt unitval" type="number" value="10"></div>
+      <div class="field"><label>Thickness (<span class="unit-tag-small">in</span>)</label><input class="bw_thick unitval-small" type="number" value="10"></div>
+    </div>
+    <div class="field"><label>Openings / Deductions (sq ft)</label><input class="bw_open" type="number" value="0"></div>
+  `;
+  document.getElementById('b_wallsHolder').appendChild(div);
+}
+function applyBrickPreset(mmL,mmH,mmW){
+  const toDisplay = v => unitSystem === 'fps' ? +(v/25.4).toFixed(3) : +v.toFixed(1);
+  document.getElementById('b_len').value = toDisplay(mmL);
+  document.getElementById('b_hgt').value = toDisplay(mmH);
+  document.getElementById('b_wid').value = toDisplay(mmW);
+}
+function applyBrickRatioPreset(){
+  const v = document.getElementById('b_ratiopreset').value;
+  if(v !== 'custom'){
+    document.getElementById('b_cementpart').value = 1;
+    document.getElementById('b_sandpart').value = +v;
+  }
+}
+function calcBrick(){
+  const bl = +document.getElementById('b_len').value;
+  const bh = +document.getElementById('b_hgt').value;
+  const bw = +document.getElementById('b_wid').value;
+  const joint = +document.getElementById('b_joint').value;
+  const waste = +document.getElementById('b_waste').value;
+  const cementPart = +document.getElementById('b_cementpart').value;
+  const sandPart = +document.getElementById('b_sandpart').value;
+  const cementCost = +document.getElementById('b_cementcost').value;
+  const sandCost = +document.getElementById('b_sandcost').value;
+  const brickCost = +document.getElementById('b_brickcost').value;
+  const cur = document.getElementById('b_currency').value || '৳';
+
+  const rows = document.querySelectorAll('#b_wallsHolder .itemrow');
+  if(rows.length === 0){
+    document.getElementById('b_results').innerHTML = '<span class="note">অন্তত একটি দেয়াল যোগ করুন।</span>';
+    return;
+  }
+
+  let grossArea = 0, netArea = 0, wallVolCin = 0; // cubic inches
+  rows.forEach(r => {
+    const L = toFt(+r.querySelector('.bw_len').value);
+    const H = toFt(+r.querySelector('.bw_hgt').value);
+    const T = +r.querySelector('.bw_thick').value; // inches
+    const open = +r.querySelector('.bw_open').value;
+    const area = L * H;
+    const net = Math.max(area - open, 0);
+    grossArea += area;
+    netArea += net;
+    wallVolCin += net * 144 * T; // sqft*144 = sq in, * thickness in => cubic inches
+  });
+
+  const rawBrickVol = bl * bw * bh; // cubic in, no joint
+  const effBrickVol = (bl + joint) * (bw + joint) * (bh + joint); // cubic in, with joint
+
+  const bricksRaw = wallVolCin / effBrickVol;
+  const bricksWithWaste = Math.ceil(bricksRaw * (1 + waste / 100));
+
+  // Mortar = wall volume - actual brick volume (using raw brick count, no waste)
+  const actualBrickVolCin = bricksRaw * rawBrickVol;
+  const mortarVolCin = Math.max(wallVolCin - actualBrickVolCin, 0);
+  const mortarVolCft = mortarVolCin / 1728;
+  const dryVol = mortarVolCft * 1.33;
+  const totalParts = cementPart + sandPart;
+  const cementVolCft = dryVol * (cementPart / totalParts);
+  const sandVolCft = dryVol * (sandPart / totalParts);
+  const cementBags = cementVolCft / 1.25;
+
+  const bricksCostTotal = bricksWithWaste * brickCost;
+  const cementCostTotal = cementBags * cementCost;
+  const sandCostTotal = sandVolCft * sandCost;
+  const totalCost = bricksCostTotal + cementCostTotal + sandCostTotal;
+
+  document.getElementById('b_results').innerHTML = `
+    <h3>📊 Estimation Results</h3>
+    <div class="resultgrid">
+      <div class="stat"><small>Total Wall Area</small><b>${grossArea.toFixed(1)} sq ft</b></div>
+      <div class="stat"><small>Net Area (- Openings)</small><b>${netArea.toFixed(1)} sq ft</b></div>
+      <div class="stat"><small>Bricks Required</small><b>${Math.ceil(bricksRaw).toLocaleString()}</b> pieces</div>
+      <div class="stat"><small>With Wastage</small><b>${bricksWithWaste.toLocaleString()}</b> pieces</div>
+    </div>
+    <h3>🏗️ Mortar Materials Required</h3>
+    <div class="resultgrid">
+      <div class="stat"><small>Cement</small><b>${cementBags.toFixed(2)}</b> bags (50kg)</div>
+      <div class="stat"><small>Sand</small><b>${sandVolCft.toFixed(2)}</b> cft</div>
+      <div class="stat"><small>Mortar Volume</small><b>${mortarVolCft.toFixed(2)}</b> cft</div>
+      <div class="stat"><small>Mix Ratio</small><b>1:${sandPart}</b> Cement:Sand</div>
+    </div>
+    <div class="costbox">
+      <div>Bricks Cost: ${cur}${bricksCostTotal.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+      <div>Cement Cost: ${cur}${cementCostTotal.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+      <div>Sand Cost: ${cur}${sandCostTotal.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+      <div class="totalcost">Total: ${cur}${totalCost.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+    </div>
+  `;
+}
+addBrickWall();
+
+/* ============ PLASTER ============ */
+let plasterSurfCount = 0;
+function addPlasterSurf(){
+  plasterSurfCount++;
+  const id = plasterSurfCount;
+  const div = document.createElement('div');
+  div.className = 'itemrow';
+  div.id = 'psurf_' + id;
+  div.innerHTML = `
+    <button class="rm" onclick="document.getElementById('psurf_${id}').remove()">✕</button>
+    <div class="row2">
+      <div class="field"><label>Length (<span class="unit-tag">${lenLabel()}</span>)</label><input class="ps_len unitval" type="number" value="20"></div>
+      <div class="field"><label>Height (<span class="unit-tag">${lenLabel()}</span>)</label><input class="ps_hgt unitval" type="number" value="10"></div>
+    </div>
+    <div class="field"><label>Openings / Deductions (sq ft)</label><input class="ps_open" type="number" value="0"></div>
+  `;
+  document.getElementById('p_surfHolder').appendChild(div);
+}
+function applyPlasterType(){
+  const v = document.getElementById('p_type').value;
+  if(v !== 'custom') document.getElementById('p_customthick').value = v;
+}
+function applyPlasterRatioPreset(){
+  const v = document.getElementById('p_ratiopreset').value;
+  if(v !== 'custom'){
+    document.getElementById('p_cementpart').value = 1;
+    document.getElementById('p_sandpart').value = +v;
+  }
+}
+function calcPlaster(){
+  const thickMm = +document.getElementById('p_customthick').value;
+  const waste = +document.getElementById('p_waste').value;
+  const cementPart = +document.getElementById('p_cementpart').value;
+  const sandPart = +document.getElementById('p_sandpart').value;
+  const cementCost = +document.getElementById('p_cementcost').value;
+  const sandCost = +document.getElementById('p_sandcost').value;
+  const cur = document.getElementById('p_currency').value || '৳';
+
+  const rows = document.querySelectorAll('#p_surfHolder .itemrow');
+  if(rows.length === 0){
+    document.getElementById('p_results').innerHTML = '<span class="note">অন্তত একটি surface যোগ করুন।</span>';
+    return;
+  }
+
+  let grossArea = 0, netArea = 0;
+  rows.forEach(r => {
+    const L = toFt(+r.querySelector('.ps_len').value);
+    const H = toFt(+r.querySelector('.ps_hgt').value);
+    const open = +r.querySelector('.ps_open').value;
+    const area = L * H;
+    grossArea += area;
+    netArea += Math.max(area - open, 0);
+  });
+
+  const thicknessFt = thickMm / 304.8;
+  const plasterVolCft = netArea * thicknessFt;
+  const dryVol = plasterVolCft * 1.33 * (1 + waste / 100);
+  const totalParts = cementPart + sandPart;
+  const cementVolCft = dryVol * (cementPart / totalParts);
+  const sandVolCft = dryVol * (sandPart / totalParts);
+  const cementBags = cementVolCft / 1.25;
+
+  const cementCostTotal = cementBags * cementCost;
+  const sandCostTotal = sandVolCft * sandCost;
+  const totalCost = cementCostTotal + sandCostTotal;
+
+  document.getElementById('p_results').innerHTML = `
+    <h3>📊 Plaster Estimation Results</h3>
+    <div class="resultgrid">
+      <div class="stat"><small>Total Surface Area</small><b>${grossArea.toFixed(1)} sq ft</b></div>
+      <div class="stat"><small>Net Area (- Openings)</small><b>${netArea.toFixed(1)} sq ft</b></div>
+      <div class="stat wide"><small>Plaster Volume</small><b>${plasterVolCft.toFixed(2)} cft</b></div>
+    </div>
+    <h3>🏗️ Materials Required</h3>
+    <div class="resultgrid">
+      <div class="stat"><small>Cement</small><b>${cementBags.toFixed(2)}</b> bags (50kg)</div>
+      <div class="stat"><small>Sand</small><b>${sandVolCft.toFixed(2)}</b> cft</div>
+      <div class="stat wide"><small>Mix Ratio</small><b>1:${sandPart}</b> Cement:Sand</div>
+    </div>
+    <div class="costbox">
+      <div>Cement Cost: ${cur}${cementCostTotal.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+      <div>Sand Cost: ${cur}${sandCostTotal.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+      <div class="totalcost">Total: ${cur}${totalCost.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+    </div>
+  `;
+}
+addPlasterSurf();
+
+/* ============ TILE ============ */
+let tileFloorCount = 0;
+function addTileFloor(){
+  tileFloorCount++;
+  const id = tileFloorCount;
+  const div = document.createElement('div');
+  div.className = 'itemrow';
+  div.id = 'tfloor_' + id;
+  div.innerHTML = `
+    <button class="rm" onclick="document.getElementById('tfloor_${id}').remove()">✕</button>
+    <div class="row2">
+      <div class="field"><label>Length (<span class="unit-tag">${lenLabel()}</span>)</label><input class="tf_len unitval" type="number" value="12"></div>
+      <div class="field"><label>Width (<span class="unit-tag">${lenLabel()}</span>)</label><input class="tf_wid unitval" type="number" value="10"></div>
+    </div>
+    <div class="field"><label>Excluded Area (sq ft)</label><input class="tf_excl" type="number" value="0"></div>
+  `;
+  document.getElementById('t_floorHolder').appendChild(div);
+}
+function applyTileSizePreset(){
+  const v = document.getElementById('t_sizepreset').value;
+  const mapIn = {'12x12':[12,12],'16x16':[16,16],'18x18':[18,18],'24x24':[24,24]};
+  if(mapIn[v]){
+    const toDisplay = inches => unitSystem === 'fps' ? inches : +(inches*25.4).toFixed(1);
+    document.getElementById('t_len').value = toDisplay(mapIn[v][0]);
+    document.getElementById('t_wid').value = toDisplay(mapIn[v][1]);
+  }
+}
+function toggleTileMethod(){
+  const m = document.getElementById('t_method').value;
+  document.getElementById('t_adhesiveOpts').style.display = m === 'adhesive' ? 'block' : 'none';
+  document.getElementById('t_cementbedOpts').style.display = m === 'cementbed' ? 'block' : 'none';
+}
+function applyAdhesiveType(){
+  const v = document.getElementById('t_adhtype').value;
+  if(v !== 'custom') document.getElementById('t_bedmm').value = v;
+}
+function calcTile(){
+  const tl = +document.getElementById('t_len').value;
+  const tw = +document.getElementById('t_wid').value;
+  const grout = +document.getElementById('t_grout').value; // mm
+  const waste = +document.getElementById('t_waste').value;
+  const method = document.getElementById('t_method').value;
+  const cur = document.getElementById('t_currency').value || '৳';
+  const tileCost = +document.getElementById('t_tilecost').value;
+  const cementCost = +document.getElementById('t_cementcost').value;
+  const sandCost = +document.getElementById('t_sandcost').value;
+  const adhCost = +document.getElementById('t_adhcost').value;
+
+  const rows = document.querySelectorAll('#t_floorHolder .itemrow');
+  if(rows.length === 0){
+    document.getElementById('t_results').innerHTML = '<span class="note">অন্তত একটি floor যোগ করুন।</span>';
+    return;
+  }
+
+  let grossArea = 0, netArea = 0;
+  rows.forEach(r => {
+    const L = toFt(+r.querySelector('.tf_len').value);
+    const W = toFt(+r.querySelector('.tf_wid').value);
+    const excl = +r.querySelector('.tf_excl').value;
+    const area = L * W;
+    grossArea += area;
+    netArea += Math.max(area - excl, 0);
+  });
+
+  const groutIn = grout / 25.4;
+  const tileAreaSqft = ((tl + groutIn) * (tw + groutIn)) / 144;
+  const tilesRaw = netArea / tileAreaSqft;
+  const tilesWithWaste = Math.ceil(tilesRaw * (1 + waste / 100));
+
+  let extraHtml = '';
+  let materialCostTotal = 0;
+
+  if(method === 'adhesive'){
+    const bedMm = +document.getElementById('t_bedmm').value;
+    // approx: 20kg bag covers ~40 sqft at 3mm bed, scales linearly with thickness
+    const adhesiveBags = netArea / (40 * (3 / bedMm));
+    const groutKg = netArea * 0.4; // rough estimate kg per sqft
+    const groutBags = groutKg / 5; // 5kg bag
+    const adhCostTotal = adhesiveBags * adhCost;
+    materialCostTotal += adhCostTotal;
+
+    extraHtml = `
+      <h3>🏗️ Adhesive &amp; Grout Required</h3>
+      <div class="resultgrid">
+        <div class="stat"><small>Adhesive Bags</small><b>${adhesiveBags.toFixed(2)}</b> bags (20kg)</div>
+        <div class="stat"><small>Grout Bags</small><b>${groutBags.toFixed(2)}</b> bags (5kg)</div>
+      </div>
+      <div class="costbox">
+        <div>Tiles Cost: ${cur}${(tilesWithWaste*tileCost).toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+        <div>Adhesive Cost: ${cur}${adhCostTotal.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+        <div class="totalcost">Total: ${cur}${(materialCostTotal+tilesWithWaste*tileCost).toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+      </div>`;
+  } else {
+    const bedThickMm = +document.getElementById('t_bedthick2').value;
+    const bedRatio = +document.getElementById('t_bedratio').value;
+    const bedThickFt = bedThickMm / 304.8;
+    const bedVolCft = netArea * bedThickFt;
+    const dryVol = bedVolCft * 1.33;
+    const totalParts = 1 + bedRatio;
+    const cementVolCft = dryVol / totalParts;
+    const sandVolCft = dryVol - cementVolCft;
+    const cementBags = cementVolCft / 1.25;
+    const cementCostTotal = cementBags * cementCost;
+    const sandCostTotal = sandVolCft * sandCost;
+    materialCostTotal = cementCostTotal + sandCostTotal;
+
+    extraHtml = `
+      <h3>🏗️ Bedding Materials Required</h3>
+      <div class="resultgrid">
+        <div class="stat"><small>Cement</small><b>${cementBags.toFixed(2)}</b> bags (50kg)</div>
+        <div class="stat"><small>Sand</small><b>${sandVolCft.toFixed(2)}</b> cft</div>
+      </div>
+      <div class="costbox">
+        <div>Tiles Cost: ${cur}${(tilesWithWaste*tileCost).toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+        <div>Cement Cost: ${cur}${cementCostTotal.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+        <div>Sand Cost: ${cur}${sandCostTotal.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+        <div class="totalcost">Total: ${cur}${(materialCostTotal+tilesWithWaste*tileCost).toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+      </div>`;
+  }
+
+  document.getElementById('t_results').innerHTML = `
+    <h3>📊 Floor Tiles Estimation Results</h3>
+    <div class="resultgrid">
+      <div class="stat"><small>Total Floor Area</small><b>${grossArea.toFixed(1)} sq ft</b></div>
+      <div class="stat"><small>Net Area (- Excluded)</small><b>${netArea.toFixed(1)} sq ft</b></div>
+      <div class="stat"><small>Tiles Required</small><b>${Math.ceil(tilesRaw).toLocaleString()}</b> pieces</div>
+      <div class="stat"><small>With Wastage</small><b>${tilesWithWaste.toLocaleString()}</b> pieces</div>
+    </div>
+    ${extraHtml}
+  `;
+}
+addTileFloor();
+toggleTileMethod();
+
+/* ============ PAINT ============ */
+let paintWallCount = 0;
+function addPaintWall(){
+  paintWallCount++;
+  const id = paintWallCount;
+  const div = document.createElement('div');
+  div.className = 'itemrow';
+  div.id = 'ptwall_' + id;
+  div.innerHTML = `
+    <button class="rm" onclick="document.getElementById('ptwall_${id}').remove()">✕</button>
+    <div class="row2">
+      <div class="field"><label>Length (<span class="unit-tag">${lenLabel()}</span>)</label><input class="ptw_len unitval" type="number" value="20"></div>
+      <div class="field"><label>Height (<span class="unit-tag">${lenLabel()}</span>)</label><input class="ptw_hgt unitval" type="number" value="10"></div>
+    </div>
+    <div class="field"><label>Openings / Deductions (sq ft)</label><input class="ptw_open" type="number" value="0"></div>
+  `;
+  document.getElementById('pt_wallHolder').appendChild(div);
+}
+function calcPaint(){
+  const coverage = +document.getElementById('pt_coverage').value;
+  const coats = +document.getElementById('pt_coats').value;
+  const waste = +document.getElementById('pt_waste').value;
+  const containerSize = +document.getElementById('pt_container').value;
+  const cur = document.getElementById('pt_currency').value || '৳';
+  const paintCost = +document.getElementById('pt_paintcost').value;
+
+  const rows = document.querySelectorAll('#pt_wallHolder .itemrow');
+  if(rows.length === 0){
+    document.getElementById('pt_results').innerHTML = '<span class="note">অন্তত একটি দেয়াল যোগ করুন।</span>';
+    return;
+  }
+
+  let grossArea = 0, netArea = 0;
+  rows.forEach(r => {
+    const L = toFt(+r.querySelector('.ptw_len').value);
+    const H = toFt(+r.querySelector('.ptw_hgt').value);
+    const open = +r.querySelector('.ptw_open').value;
+    const area = L * H;
+    grossArea += area;
+    netArea += Math.max(area - open, 0);
+  });
+
+  const paintLiters = (netArea * coats / coverage) * (1 + waste / 100);
+  const containers = Math.ceil(paintLiters / containerSize);
+  const paintCostTotal = paintLiters * paintCost;
+
+  document.getElementById('pt_results').innerHTML = `
+    <h3>📊 Paint Estimation Results</h3>
+    <div class="resultgrid">
+      <div class="stat"><small>Total Wall Area</small><b>${grossArea.toFixed(1)} sq ft</b></div>
+      <div class="stat"><small>Net Area (- Openings)</small><b>${netArea.toFixed(1)} sq ft</b></div>
+      <div class="stat"><small>Paint Needed</small><b>${paintLiters.toFixed(2)}</b> liters</div>
+      <div class="stat"><small>Containers</small><b>${containers}</b></div>
+    </div>
+    <div class="costbox">
+      <div>Paint Cost: ${cur}${paintCostTotal.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+      <div class="totalcost">Total: ${cur}${paintCostTotal.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+    </div>
+  `;
+}
+addPaintWall();
+
+/* ============ CONCRETE ============ */
+let concreteElCount = 0;
+function addConcreteEl(){
+  concreteElCount++;
+  const id = concreteElCount;
+  const div = document.createElement('div');
+  div.className = 'itemrow';
+  div.id = 'cel_' + id;
+  div.innerHTML = `
+    <button class="rm" onclick="document.getElementById('cel_${id}').remove()">✕</button>
+    <div class="row3">
+      <div class="field"><label>Length (<span class="unit-tag">${lenLabel()}</span>)</label><input class="ce_len unitval" type="number" value="10"></div>
+      <div class="field"><label>Width (<span class="unit-tag">${lenLabel()}</span>)</label><input class="ce_wid unitval" type="number" value="10"></div>
+      <div class="field"><label>Thickness/Height (<span class="unit-tag-small">in</span>)</label><input class="ce_thick unitval-small" type="number" value="5"></div>
+    </div>
+  `;
+  document.getElementById('c_elHolder').appendChild(div);
+}
+function applyConcreteGrade(){
+  const v = document.getElementById('c_grade').value;
+  if(v !== 'custom'){
+    const [c,s,a] = v.split(',').map(Number);
+    document.getElementById('c_cementpart').value = c;
+    document.getElementById('c_sandpart').value = s;
+    document.getElementById('c_aggpart').value = a;
+  }
+}
+function toggleSteel(){
+  document.getElementById('c_steelOpts').style.display = document.getElementById('c_steelon').checked ? 'block' : 'none';
+}
+function applySteelPreset(){
+  const v = document.getElementById('c_steelpreset').value;
+  if(v !== 'custom') document.getElementById('c_steelpct').value = v;
+}
+function calcConcrete(){
+  const cementPart = +document.getElementById('c_cementpart').value;
+  const sandPart = +document.getElementById('c_sandpart').value;
+  const aggPart = +document.getElementById('c_aggpart').value;
+  const waste = +document.getElementById('c_waste').value;
+  const steelOn = document.getElementById('c_steelon').checked;
+  const steelPct = +document.getElementById('c_steelpct').value;
+  const cur = document.getElementById('c_currency').value || '৳';
+  const cementCost = +document.getElementById('c_cementcost').value;
+  const sandCost = +document.getElementById('c_sandcost').value;
+  const aggCost = +document.getElementById('c_aggcost').value;
+  const steelCost = +document.getElementById('c_steelcost').value;
+
+  const rows = document.querySelectorAll('#c_elHolder .itemrow');
+  if(rows.length === 0){
+    document.getElementById('c_results').innerHTML = '<span class="note">অন্তত একটি element যোগ করুন।</span>';
+    return;
+  }
+
+  let totalVolCft = 0;
+  rows.forEach(r => {
+    const L = toFt(+r.querySelector('.ce_len').value);
+    const W = toFt(+r.querySelector('.ce_wid').value);
+    const T = (+r.querySelector('.ce_thick').value) / 12; // in to ft
+    totalVolCft += L * W * T;
+  });
+
+  const withWaste = totalVolCft * (1 + waste / 100);
+  const dryVol = withWaste * 1.54; // standard dry volume factor for concrete
+  const totalParts = cementPart + sandPart + aggPart;
+  const cementVolCft = dryVol * (cementPart / totalParts);
+  const sandVolCft = dryVol * (sandPart / totalParts);
+  const aggVolCft = dryVol * (aggPart / totalParts);
+  const cementBags = cementVolCft / 1.25;
+
+  let steelKg = 0;
+  if(steelOn){
+    const volM3 = withWaste * 0.0283168;
+    steelKg = volM3 * (steelPct / 100) * 7850;
+  }
+
+  const cementCostTotal = cementBags * cementCost;
+  const sandCostTotal = sandVolCft * sandCost;
+  const aggCostTotal = aggVolCft * aggCost;
+  const steelCostTotal = steelKg * steelCost;
+  const totalCost = cementCostTotal + sandCostTotal + aggCostTotal + steelCostTotal;
+
+  document.getElementById('c_results').innerHTML = `
+    <h3>📊 Concrete Estimation Results</h3>
+    <div class="resultgrid">
+      <div class="stat"><small>Total Volume</small><b>${totalVolCft.toFixed(2)} cft</b></div>
+      <div class="stat"><small>With Wastage</small><b>${withWaste.toFixed(2)} cft</b></div>
+      <div class="stat wide"><small>Mix Ratio</small><b>1:${sandPart}:${aggPart}</b> C:S:A</div>
+    </div>
+    <h3>🏗️ Materials Required</h3>
+    <div class="resultgrid">
+      <div class="stat"><small>Cement</small><b>${cementBags.toFixed(2)}</b> bags (50kg)</div>
+      <div class="stat"><small>Sand</small><b>${sandVolCft.toFixed(2)}</b> cft</div>
+      <div class="stat"><small>Aggregate</small><b>${aggVolCft.toFixed(2)}</b> cft</div>
+      <div class="stat"><small>Steel Rebar</small><b>${steelOn ? steelKg.toFixed(1) : '—'}</b> ${steelOn ? 'kg' : ''}</div>
+    </div>
+    <div class="costbox">
+      <div>Cement Cost: ${cur}${cementCostTotal.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+      <div>Sand Cost: ${cur}${sandCostTotal.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+      <div>Aggregate Cost: ${cur}${aggCostTotal.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+      ${steelOn ? `<div>Steel Cost: ${cur}${steelCostTotal.toLocaleString(undefined,{maximumFractionDigits:0})}</div>` : ''}
+      <div class="totalcost">Total: ${cur}${totalCost.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+    </div>
+  `;
+}
+addConcreteEl();
+</script>
+</body>
+</html>
