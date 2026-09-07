@@ -30,10 +30,11 @@
     background:var(--paper);
     color:var(--ink);
     font-family:"Georgia","Noto Serif Bengali","Noto Serif",serif;
-    line-height:1.5;
+    line-height:1.6;
+    font-size:17px;
   }
   header.nav{background:var(--ink);border-bottom:4px solid var(--clay);}
-  .container{max-width:1100px;margin:0 auto;padding:0 20px;}
+  .container{max-width:1280px;margin:0 auto;padding:0 20px;}
   .navin{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;}
   .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;font-size:1.15rem;}
   .brand .brick-icon{width:26px;height:18px;background:var(--clay);border-radius:2px;position:relative;flex:none;}
@@ -51,7 +52,7 @@
   header.nav{position:relative;}
 
   main.toolwrap{padding:32px 0 60px;}
-  h1{font-size:1.55rem;margin:0 0 6px;}
+  h1{font-size:1.9rem;margin:0 0 8px;}
   .lead{color:#5c5348;margin:0 0 22px;font-size:.97rem;}
 
   .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
@@ -66,17 +67,17 @@
   .unitswitch label{display:flex;align-items:center;gap:5px;cursor:pointer;}
 
   .panelgrid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}
-  .panel{background:#fff;border:1px solid var(--line);border-radius:6px;padding:24px;}
-  .panel h2{font-size:1.1rem;margin:0 0 14px;}
-  .panel h3{font-size:.98rem;margin:18px 0 10px;color:var(--clay-dark);}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:6px;padding:30px 28px;}
+  .panel h2{font-size:1.3rem;margin:0 0 16px;}
+  .panel h3{font-size:1.08rem;margin:20px 0 12px;color:var(--clay-dark);}
 
   .field{margin-bottom:12px;}
   .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
   .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
-  .field label{display:block;font-size:.8rem;color:#7a6f60;margin-bottom:4px;font-family:Arial,Helvetica,sans-serif;}
+  .field label{display:block;font-size:.87rem;color:#7a6f60;margin-bottom:5px;font-family:Arial,Helvetica,sans-serif;}
   input, select{
-    width:100%;padding:8px 9px;border:1px solid var(--line);border-radius:4px;
-    background:var(--paper);color:var(--ink);font-size:.95rem;font-family:inherit;
+    width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:4px;
+    background:var(--paper);color:var(--ink);font-size:1.02rem;font-family:inherit;
   }
   input:focus, select:focus{outline:2px solid var(--clay);outline-offset:1px;border-color:var(--clay);}
 
@@ -105,13 +106,17 @@
   .calcbtn:hover{background:var(--clay-dark);}
 
   .resultgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px;}
-  .stat{background:var(--stat-bg);border-radius:5px;padding:10px 12px;font-family:Arial,Helvetica,sans-serif;}
-  .stat small{display:block;color:#8a7f70;font-size:.7rem;margin-bottom:3px;}
-  .stat b{font-size:1.05rem;}
+  .stat{background:var(--stat-bg);border-radius:5px;padding:13px 14px;font-family:Arial,Helvetica,sans-serif;}
+  .stat small{display:block;color:#8a7f70;font-size:.8rem;margin-bottom:5px;}
+  .stat b{font-size:1.5rem;}
   .stat.wide{grid-column:1 / -1;}
   .note{color:#8a7f70;font-size:.9rem;}
-  .costbox{background:#EAF4EC;border-radius:5px;padding:14px;margin-top:14px;font-family:Arial,Helvetica,sans-serif;}
-  .costbox .totalcost{font-size:1.4rem;font-weight:700;color:var(--good);}
+  .tipsbox{background:#FDF6E9;border:1px solid #EAD9A8;border-radius:6px;padding:14px 16px;margin-top:16px;font-family:Arial,Helvetica,sans-serif;font-size:.9rem;}
+  .tipsbox b{display:block;margin-bottom:6px;color:var(--clay-dark);}
+  .tipsbox ul{margin:0;padding-left:18px;}
+  .tipsbox li{margin-bottom:4px;}
+  .costbox{background:#EAF4EC;border-radius:5px;padding:16px;margin-top:14px;font-family:Arial,Helvetica,sans-serif;font-size:1.02rem;line-height:1.8;}
+  .costbox .totalcost{font-size:1.7rem;font-weight:700;color:var(--good);}
 
   .tabsection{display:none;}
   .tabsection.active{display:block;}
@@ -166,13 +171,20 @@
         <div class="panel">
           <h2>⚙️ Default Brick Settings</h2>
           <div class="row3">
-            <div class="field"><label>Brick Length (<span class="unit-tag-small">in</span>)</label><input id="b_len" class="unitval-small" type="number" value="9" step="0.01"></div>
-            <div class="field"><label>Brick Height (<span class="unit-tag-small">in</span>)</label><input id="b_hgt" class="unitval-small" type="number" value="2.75" step="0.01"></div>
-            <div class="field"><label>Brick Width/Depth (<span class="unit-tag-small">in</span>)</label><input id="b_wid" class="unitval-small" type="number" value="4.5" step="0.01"></div>
+            <div class="field"><label>Brick Length (<span class="unit-tag-small">in</span>)</label><input id="b_len" class="brickdim" type="number" value="9" step="0.01"></div>
+            <div class="field"><label>Brick Height (<span class="unit-tag-small">in</span>)</label><input id="b_hgt" class="brickdim" type="number" value="2.75" step="0.01"></div>
+            <div class="field"><label>Brick Width/Depth (<span class="unit-tag-small">in</span>)</label><input id="b_wid" class="brickdim" type="number" value="4.5" step="0.01"></div>
           </div>
           <div class="row2">
-            <div class="field"><label>Mortar Joint Gap (<span class="unit-tag-small">in</span>)</label><input id="b_joint" class="unitval-small" type="number" value="0.5" step="0.01"></div>
+            <div class="field"><label>Mortar Joint Gap (<span class="unit-tag-small">in</span>)</label><input id="b_joint" class="brickdim" type="number" value="0.5" step="0.01"></div>
             <div class="field"><label>Wastage Factor (%)</label><input id="b_waste" type="number" value="5" step="0.5"></div>
+          </div>
+
+          <div class="row2">
+            <div class="field"><label>Default Wall Thickness (<span class="unit-tag-small">in</span>)</label><input id="b_defthick" class="unitval-small" type="number" value="10"></div>
+            <div class="field" style="display:flex;align-items:flex-end;">
+              <button type="button" class="preset" style="width:100%;" onclick="applyThicknessToAll()">Apply to All Walls</button>
+            </div>
           </div>
 
           <h3>Quick Presets</h3>
@@ -181,7 +193,7 @@
             <button class="preset" onclick="applyBrickPreset(193.675,57.15,92.075)">Modular (7.625×2.25×3.625in)</button>
             <button class="preset" onclick="applyBrickPreset(203.2,69.85,76.2)">Queen (8×2.75×3in)</button>
             <button class="preset" onclick="applyBrickPreset(244.475,69.85,76.2)">King (9.625×2.75×3in)</button>
-            <button class="preset" onclick="applyBrickPreset(240,115,70)">BD Standard (240×115×70mm)</button>
+            <button class="preset" onclick="applyBrickPreset(241,70,114)">BD Standard (241×114×70mm)</button>
           </div>
 
           <h3>🧱 Mortar Mix Settings</h3>
@@ -207,6 +219,16 @@
             <div class="field"><label>Brick (per piece)</label><input id="b_brickcost" type="number" value="12"></div>
           </div>
           <div class="field"><label>Currency Symbol</label><input id="b_currency" type="text" value="৳"></div>
+
+          <div class="tipsbox">
+            <b>💡 Quick Tips</b>
+            <ul>
+              <li>বাংলাদেশে সাধারণত ৯″×৩″×৪.৫″ বা মেট্রিক ২৪১×১১৪×৭০mm ইট ব্যবহৃত হয়</li>
+              <li>৫″ দেয়াল = Single Brick Wall, ১০″ দেয়াল = Double Brick Wall</li>
+              <li>মর্টার জয়েন্ট সাধারণত ১০mm (০.৫″) ধরা হয়</li>
+              <li>নিরাপদ estimate-এর জন্য ৫–১০% wastage যোগ করুন</li>
+            </ul>
+          </div>
         </div>
 
         <div class="panel">
@@ -250,7 +272,7 @@
             <div class="field"><label>Cement Parts</label><input id="p_cementpart" type="number" value="1" step="0.1"></div>
             <div class="field"><label>Sand Parts</label><input id="p_sandpart" type="number" value="4" step="0.1"></div>
           </div>
-          <div class="field"><label>Wastage Factor (%)</label><input id="p_waste" type="number" value="8"></div>
+          <div class="field"><label>Wastage Factor (%)</label><input id="p_waste" type="number" value="5"></div>
 
           <h3>💰 Material Costs (Optional)</h3>
           <div class="row3">
@@ -259,7 +281,15 @@
             <div class="field"><label>Currency</label><input id="p_currency" type="text" value="৳"></div>
           </div>
 
-          <p class="note">💡 Internal walls: 12mm (1:4). External walls: 15mm (1:3). Ceiling: 10mm (1:3). Add 5–10% wastage.</p>
+          <div class="tipsbox">
+            <b>💡 Quick Tips</b>
+            <ul>
+              <li>Internal walls: 12mm thickness (1:4 ratio)</li>
+              <li>External walls: 15mm thickness (1:3 ratio)</li>
+              <li>Ceiling: 10mm thickness (1:3 ratio)</li>
+              <li>ভালো ফলাফলের জন্য 5–10% wastage যোগ করুন</li>
+            </ul>
+          </div>
         </div>
 
         <div class="panel">
@@ -280,19 +310,22 @@
           <div class="field">
             <label>Tile Size Preset</label>
             <select id="t_sizepreset" onchange="applyTileSizePreset()">
-              <option value="12x12">12" × 12"</option>
-              <option value="16x16">16" × 16"</option>
-              <option value="18x18">18" × 18"</option>
-              <option value="24x24" selected>24" × 24"</option>
+              <option value="12x12" selected>12" × 12" (1 sq ft)</option>
+              <option value="16x16">16" × 16" (1.78 sq ft)</option>
+              <option value="18x18">18" × 18" (2.25 sq ft)</option>
+              <option value="24x24">24" × 24" (4 sq ft)</option>
+              <option value="300mm">300mm × 300mm</option>
+              <option value="400mm">400mm × 400mm</option>
+              <option value="600mm">600mm × 600mm</option>
               <option value="custom">Custom Size</option>
             </select>
           </div>
           <div class="row2">
-            <div class="field"><label>Tile Length (<span class="unit-tag-small">in</span>)</label><input id="t_len" class="unitval-small" type="number" value="24"></div>
-            <div class="field"><label>Tile Width (<span class="unit-tag-small">in</span>)</label><input id="t_wid" class="unitval-small" type="number" value="24"></div>
+            <div class="field"><label>Tile Length (<span class="unit-tag-small">in</span>)</label><input id="t_len" class="unitval-small" type="number" value="12"></div>
+            <div class="field"><label>Tile Width (<span class="unit-tag-small">in</span>)</label><input id="t_wid" class="unitval-small" type="number" value="12"></div>
           </div>
           <div class="row2">
-            <div class="field"><label>Grout Gap (mm)</label><input id="t_grout" type="number" value="4"></div>
+            <div class="field"><label>Grout Gap (mm)</label><input id="t_grout" type="number" value="3"></div>
             <div class="field"><label>Wastage Factor (%)</label><input id="t_waste" type="number" value="10"></div>
           </div>
 
@@ -331,6 +364,8 @@
             <div class="field"><label>Bed Thickness (mm) — Standard: 20–30mm</label><input id="t_bedthick2" type="number" value="25"></div>
           </div>
 
+          <div class="field"><label>Grout Depth (mm)</label><input id="t_groutdepth" type="number" value="6"></div>
+
           <h3>💰 Material Costs (Optional)</h3>
           <div class="row2">
             <div class="field"><label>Tile Cost (per piece)</label><input id="t_tilecost" type="number" value="0"></div>
@@ -339,7 +374,19 @@
           <div class="row3">
             <div class="field"><label>Cement (per bag)</label><input id="t_cementcost" type="number" value="0"></div>
             <div class="field"><label>Sand (per cft)</label><input id="t_sandcost" type="number" value="0"></div>
-            <div class="field"><label>Currency</label><input id="t_currency" type="text" value="৳"></div>
+            <div class="field"><label>Grout Cost (per bag)</label><input id="t_groutcost" type="number" value="0"></div>
+          </div>
+          <div class="field"><label>Currency</label><input id="t_currency" type="text" value="৳"></div>
+
+          <div class="tipsbox">
+            <b>💡 Quick Tips</b>
+            <ul>
+              <li><b style="display:inline;color:inherit;">Adhesive:</b> দ্রুত ও পরিষ্কার পদ্ধতি (3–5mm bed)</li>
+              <li><b style="display:inline;color:inherit;">Cement-Sand:</b> প্রচলিত পদ্ধতি (20–30mm bed)</li>
+              <li>Standard grout gap: 3–5mm</li>
+              <li>Cutting-এর জন্য 10–15% wastage যোগ করুন</li>
+              <li>বড় টাইলসে কম grout লাগে</li>
+            </ul>
           </div>
         </div>
 
@@ -369,7 +416,7 @@
             </select>
           </div>
           <div class="row2">
-            <div class="field"><label>Paint Coverage (sq ft/liter)</label><input id="pt_coverage" type="number" value="140"></div>
+            <div class="field"><label>Paint Coverage (sq ft/liter)</label><input id="pt_coverage" type="number" value="140"><small style="display:block;color:#8a7f70;font-size:.75rem;margin-top:3px;font-family:Arial,Helvetica,sans-serif;">Standard: 120–150 sq ft/liter</small></div>
             <div class="field"><label>Number of Coats</label>
               <select id="pt_coats"><option value="1">1 Coat</option><option value="2" selected>2 Coats</option><option value="3">3 Coats</option></select>
             </div>
@@ -392,6 +439,17 @@
             <div class="field"><label>Paint (per liter)</label><input id="pt_paintcost" type="number" value="0"></div>
             <div class="field"><label>Primer (per liter)</label><input id="pt_primercost" type="number" value="0"></div>
             <div class="field"><label>Currency</label><input id="pt_currency" type="text" value="৳"></div>
+          </div>
+
+          <div class="tipsbox">
+            <b>💡 Quick Tips</b>
+            <ul>
+              <li>Standard coverage: 120–150 sq ft/liter</li>
+              <li>ভালো finish-এর জন্য ২ কোট রং করুন</li>
+              <li>Primer রং-এর adhesion বাড়ায়</li>
+              <li>রুক্ষ surface-এ বেশি রং লাগে</li>
+              <li>নিরাপদ estimate-এর জন্য ১০% wastage যোগ করুন</li>
+            </ul>
           </div>
         </div>
 
@@ -460,6 +518,17 @@
             <div class="field"><label>Steel (per kg)</label><input id="c_steelcost" type="number" value="0"></div>
             <div class="field"><label>Currency</label><input id="c_currency" type="text" value="৳"></div>
           </div>
+
+          <div class="tipsbox">
+            <b>💡 ACI 318 Guidelines</b>
+            <ul>
+              <li><b style="display:inline;color:inherit;">Slabs:</b> Min 0.18% steel</li>
+              <li><b style="display:inline;color:inherit;">Beams:</b> Min 0.33%, Typical 1–2%</li>
+              <li><b style="display:inline;color:inherit;">Columns:</b> Min 1%, Max 8%</li>
+              <li><b style="display:inline;color:inherit;">Walls:</b> Min 0.15% vertical &amp; horizontal</li>
+              <li><b style="display:inline;color:inherit;">Footings:</b> Min 0.15%, Typical 0.5–1%</li>
+            </ul>
+          </div>
         </div>
 
         <div class="panel">
@@ -519,8 +588,29 @@ function setUnitSystem(v){
       inp.value = goingToMetric ? +(val / 3.28084).toFixed(3) : +(val * 3.28084).toFixed(3);
     }
   });
+  document.querySelectorAll('.unitval-small').forEach(inp => {
+    const val = parseFloat(inp.value);
+    if(!isNaN(val) && val !== 0){
+      inp.value = goingToMetric ? +(val * 25.4).toFixed(1) : +(val / 25.4).toFixed(3);
+    }
+  });
+  // Brick dimensions snap to the real-world construction standard for each
+  // unit system (not a mathematical mm<->in conversion of whatever value
+  // was entered), since the two systems use different nominal brick sizes.
+  if(goingToMetric){
+    document.getElementById('b_len').value = 241;
+    document.getElementById('b_hgt').value = 70;
+    document.getElementById('b_wid').value = 114;
+    document.getElementById('b_joint').value = 10;
+  } else {
+    document.getElementById('b_len').value = 9;
+    document.getElementById('b_hgt').value = 2.75;
+    document.getElementById('b_wid').value = 4.5;
+    document.getElementById('b_joint').value = 0.5;
+  }
   unitSystem = v;
   document.querySelectorAll('.unit-tag').forEach(el => { el.textContent = lenLabel(); });
+  document.querySelectorAll('.unit-tag-small').forEach(el => { el.textContent = smallLabel(); });
 }
 function lenLabel(){ return unitSystem === 'fps' ? 'ft' : 'm'; }
 function smallLabel(){ return unitSystem === 'fps' ? 'in' : 'mm'; }
@@ -580,6 +670,10 @@ function applyBrickPreset(mmL,mmH,mmW){
   document.getElementById('b_hgt').value = toDisplay(mmH);
   document.getElementById('b_wid').value = toDisplay(mmW);
 }
+function applyThicknessToAll(){
+  const t = document.getElementById('b_defthick').value;
+  document.querySelectorAll('.bw_thick').forEach(inp => { inp.value = t; });
+}
 function applyBrickRatioPreset(){
   const v = document.getElementById('b_ratiopreset').value;
   if(v !== 'custom'){
@@ -588,10 +682,10 @@ function applyBrickRatioPreset(){
   }
 }
 function calcBrick(){
-  const bl = +document.getElementById('b_len').value;
-  const bh = +document.getElementById('b_hgt').value;
-  const bw = +document.getElementById('b_wid').value;
-  const joint = +document.getElementById('b_joint').value;
+  const bl = toInches(+document.getElementById('b_len').value);
+  const bh = toInches(+document.getElementById('b_hgt').value);
+  const bw = toInches(+document.getElementById('b_wid').value);
+  const joint = toInches(+document.getElementById('b_joint').value);
   const waste = +document.getElementById('b_waste').value;
   const cementPart = +document.getElementById('b_cementpart').value;
   const sandPart = +document.getElementById('b_sandpart').value;
@@ -610,7 +704,7 @@ function calcBrick(){
   rows.forEach(r => {
     const L = toFt(+r.querySelector('.bw_len').value);
     const H = toFt(+r.querySelector('.bw_hgt').value);
-    const T = +r.querySelector('.bw_thick').value; // inches
+    const T = toInches(+r.querySelector('.bw_thick').value); // inches
     const open = +r.querySelector('.bw_open').value;
     const area = L * H;
     const net = Math.max(area - open, 0);
@@ -650,7 +744,7 @@ function calcBrick(){
     </div>
     <h3>🏗️ Mortar Materials Required</h3>
     <div class="resultgrid">
-      <div class="stat"><small>Cement</small><b>${cementBags.toFixed(2)}</b> bags (50kg)</div>
+      <div class="stat"><small>Cement</small><b>${Math.ceil(cementBags)}</b> bags (50kg)</div>
       <div class="stat"><small>Sand</small><b>${sandVolCft.toFixed(2)}</b> cft</div>
       <div class="stat"><small>Mortar Volume</small><b>${mortarVolCft.toFixed(2)}</b> cft</div>
       <div class="stat"><small>Mix Ratio</small><b>1:${sandPart}</b> Cement:Sand</div>
@@ -740,7 +834,7 @@ function calcPlaster(){
     </div>
     <h3>🏗️ Materials Required</h3>
     <div class="resultgrid">
-      <div class="stat"><small>Cement</small><b>${cementBags.toFixed(2)}</b> bags (50kg)</div>
+      <div class="stat"><small>Cement</small><b>${Math.ceil(cementBags)}</b> bags (50kg)</div>
       <div class="stat"><small>Sand</small><b>${sandVolCft.toFixed(2)}</b> cft</div>
       <div class="stat wide"><small>Mix Ratio</small><b>1:${sandPart}</b> Cement:Sand</div>
     </div>
@@ -774,10 +868,15 @@ function addTileFloor(){
 function applyTileSizePreset(){
   const v = document.getElementById('t_sizepreset').value;
   const mapIn = {'12x12':[12,12],'16x16':[16,16],'18x18':[18,18],'24x24':[24,24]};
+  const mapMm = {'300mm':[300,300],'400mm':[400,400],'600mm':[600,600]};
   if(mapIn[v]){
     const toDisplay = inches => unitSystem === 'fps' ? inches : +(inches*25.4).toFixed(1);
     document.getElementById('t_len').value = toDisplay(mapIn[v][0]);
     document.getElementById('t_wid').value = toDisplay(mapIn[v][1]);
+  } else if(mapMm[v]){
+    const toDisplay = mm => unitSystem === 'fps' ? +(mm/25.4).toFixed(3) : mm;
+    document.getElementById('t_len').value = toDisplay(mapMm[v][0]);
+    document.getElementById('t_wid').value = toDisplay(mapMm[v][1]);
   }
 }
 function toggleTileMethod(){
@@ -790,8 +889,8 @@ function applyAdhesiveType(){
   if(v !== 'custom') document.getElementById('t_bedmm').value = v;
 }
 function calcTile(){
-  const tl = +document.getElementById('t_len').value;
-  const tw = +document.getElementById('t_wid').value;
+  const tl = toInches(+document.getElementById('t_len').value);
+  const tw = toInches(+document.getElementById('t_wid').value);
   const grout = +document.getElementById('t_grout').value; // mm
   const waste = +document.getElementById('t_waste').value;
   const method = document.getElementById('t_method').value;
@@ -825,24 +924,42 @@ function calcTile(){
   let extraHtml = '';
   let materialCostTotal = 0;
 
+  const groutCost = +document.getElementById('t_groutcost').value;
+
   if(method === 'adhesive'){
     const bedMm = +document.getElementById('t_bedmm').value;
-    // approx: 20kg bag covers ~40 sqft at 3mm bed, scales linearly with thickness
-    const adhesiveBags = netArea / (40 * (3 / bedMm));
-    const groutKg = netArea * 0.4; // rough estimate kg per sqft
+    const groutDepthMm = +document.getElementById('t_groutdepth').value;
+
+    // Adhesive: volume-based, 25kg bag @ ~1500 kg/m3 density
+    const adhesiveVolCft = netArea * (bedMm / 304.8);
+    const adhesiveBagVolCft = (25 / 1500) * 35.3147;
+    const adhesiveBags = adhesiveVolCft / adhesiveBagVolCft;
+
+    // Grout: standard formula, Vol = [(L+W)/(L*W)] * depth * width * area, all in metres
+    const areaM2 = netArea * 0.092903;
+    const tileLm = tl * 0.0254, tileWm = tw * 0.0254;
+    const groutWidthM = grout / 1000, groutDepthM = groutDepthMm / 1000;
+    const groutVolM3 = ((tileLm + tileWm) / (tileLm * tileWm)) * groutDepthM * groutWidthM * areaM2;
+    const groutVolCft = groutVolM3 * 35.3147;
+    const groutKg = groutVolM3 * 1600; // typical grout density
     const groutBags = groutKg / 5; // 5kg bag
+
     const adhCostTotal = adhesiveBags * adhCost;
-    materialCostTotal += adhCostTotal;
+    const groutCostTotal = groutBags * groutCost;
+    materialCostTotal += adhCostTotal + groutCostTotal;
 
     extraHtml = `
       <h3>🏗️ Adhesive &amp; Grout Required</h3>
       <div class="resultgrid">
-        <div class="stat"><small>Adhesive Bags</small><b>${adhesiveBags.toFixed(2)}</b> bags (20kg)</div>
-        <div class="stat"><small>Grout Bags</small><b>${groutBags.toFixed(2)}</b> bags (5kg)</div>
+        <div class="stat"><small>Adhesive Volume</small><b>${adhesiveVolCft.toFixed(2)}</b> cft</div>
+        <div class="stat"><small>Adhesive Bags</small><b>${Math.ceil(adhesiveBags)}</b> bags (25kg)</div>
+        <div class="stat"><small>Grout Volume</small><b>${groutVolCft.toFixed(2)}</b> cft</div>
+        <div class="stat"><small>Grout Bags</small><b>${Math.ceil(groutBags)}</b> bags (5kg)</div>
       </div>
       <div class="costbox">
         <div>Tiles Cost: ${cur}${(tilesWithWaste*tileCost).toLocaleString(undefined,{maximumFractionDigits:0})}</div>
         <div>Adhesive Cost: ${cur}${adhCostTotal.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+        <div>Grout Cost: ${cur}${groutCostTotal.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
         <div class="totalcost">Total: ${cur}${(materialCostTotal+tilesWithWaste*tileCost).toLocaleString(undefined,{maximumFractionDigits:0})}</div>
       </div>`;
   } else {
@@ -862,7 +979,7 @@ function calcTile(){
     extraHtml = `
       <h3>🏗️ Bedding Materials Required</h3>
       <div class="resultgrid">
-        <div class="stat"><small>Cement</small><b>${cementBags.toFixed(2)}</b> bags (50kg)</div>
+        <div class="stat"><small>Cement</small><b>${Math.ceil(cementBags)}</b> bags (50kg)</div>
         <div class="stat"><small>Sand</small><b>${sandVolCft.toFixed(2)}</b> cft</div>
       </div>
       <div class="costbox">
@@ -912,6 +1029,7 @@ function calcPaint(){
   const containerSize = +document.getElementById('pt_container').value;
   const cur = document.getElementById('pt_currency').value || '৳';
   const paintCost = +document.getElementById('pt_paintcost').value;
+  const primerCost = +document.getElementById('pt_primercost').value;
 
   const rows = document.querySelectorAll('#pt_wallHolder .itemrow');
   if(rows.length === 0){
@@ -933,17 +1051,30 @@ function calcPaint(){
   const containers = Math.ceil(paintLiters / containerSize);
   const paintCostTotal = paintLiters * paintCost;
 
+  // Primer: one coat, same coverage rate, applied once before the paint coats
+  const primerLiters = (netArea / coverage) * (1 + waste / 100);
+  const primerCostTotal = primerLiters * primerCost;
+
+  const totalCost = paintCostTotal + primerCostTotal;
+
   document.getElementById('pt_results').innerHTML = `
     <h3>📊 Paint Estimation Results</h3>
     <div class="resultgrid">
       <div class="stat"><small>Total Wall Area</small><b>${grossArea.toFixed(1)} sq ft</b></div>
       <div class="stat"><small>Net Area (- Openings)</small><b>${netArea.toFixed(1)} sq ft</b></div>
-      <div class="stat"><small>Paint Needed</small><b>${paintLiters.toFixed(2)}</b> liters</div>
-      <div class="stat"><small>Containers</small><b>${containers}</b></div>
+      <div class="stat wide"><small>Paint Volume</small><b>${paintLiters.toFixed(2)} liters</b></div>
+    </div>
+    <h3>🎨 Materials Required</h3>
+    <div class="resultgrid">
+      <div class="stat"><small>Paint (Liters)</small><b>${paintLiters.toFixed(2)}</b> liters</div>
+      <div class="stat"><small>Paint Containers</small><b>${containers}</b> containers</div>
+      <div class="stat"><small>Number of Coats</small><b>${coats}</b> coats</div>
+      <div class="stat"><small>Coverage Rate</small><b>${coverage}</b> sq ft/L</div>
     </div>
     <div class="costbox">
       <div>Paint Cost: ${cur}${paintCostTotal.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
-      <div class="totalcost">Total: ${cur}${paintCostTotal.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+      <div>Primer Cost: ${cur}${primerCostTotal.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+      <div class="totalcost">Total: ${cur}${totalCost.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
     </div>
   `;
 }
@@ -1006,7 +1137,7 @@ function calcConcrete(){
   rows.forEach(r => {
     const L = toFt(+r.querySelector('.ce_len').value);
     const W = toFt(+r.querySelector('.ce_wid').value);
-    const T = (+r.querySelector('.ce_thick').value) / 12; // in to ft
+    const T = toInches(+r.querySelector('.ce_thick').value) / 12; // in to ft
     totalVolCft += L * W * T;
   });
 
@@ -1039,10 +1170,10 @@ function calcConcrete(){
     </div>
     <h3>🏗️ Materials Required</h3>
     <div class="resultgrid">
-      <div class="stat"><small>Cement</small><b>${cementBags.toFixed(2)}</b> bags (50kg)</div>
+      <div class="stat"><small>Cement</small><b>${Math.ceil(cementBags)}</b> bags (50kg)</div>
       <div class="stat"><small>Sand</small><b>${sandVolCft.toFixed(2)}</b> cft</div>
-      <div class="stat"><small>Aggregate</small><b>${aggVolCft.toFixed(2)}</b> cft</div>
-      <div class="stat"><small>Steel Rebar</small><b>${steelOn ? steelKg.toFixed(1) : '—'}</b> ${steelOn ? 'kg' : ''}</div>
+      <div class="stat"><small>Aggregate (Chips)</small><b>${aggVolCft.toFixed(2)}</b> cft</div>
+      <div class="stat"><small>Steel Rebar</small><b>${steelOn ? Math.round(steelKg) : '—'}</b> ${steelOn ? 'kg' : ''}</div>
     </div>
     <div class="costbox">
       <div>Cement Cost: ${cur}${cementCostTotal.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
